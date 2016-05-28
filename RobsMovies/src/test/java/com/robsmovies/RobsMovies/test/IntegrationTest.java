@@ -64,15 +64,15 @@ import com.robsmovies.RobsMovies.rest.MovieWS;
 				allMovies = movieDAO.getAllMovies();
 				
 				utilsDAO.deleteTable();
-				utilsDAO.resetTable();
+				utilsDAO.setEmUp();
 			}
 			
 			@Test
 			public void testGetAllMovies() throws FileNotFoundException {
-				utilsDAO.deleteTable();
-				utilsDAO.resetTable();
+//				utilsDAO.deleteTable();
+//				utilsDAO.resetTable();
 				List<Movie> movies = movieDAO.getAllMovies();
-				assertEquals("Data fetch = data persisted", movies.size(), 2);
+				assertEquals("Data fetch = data persisted", movies.size(), 3);
 			}
 			
 			@Test
@@ -107,7 +107,10 @@ import com.robsmovies.RobsMovies.rest.MovieWS;
 			
 			@Test
 			public void getOneMovie(){
-				
+				List<Movie> movies = movieDAO.getAllMovies();
+				int id = movies.get(0).getId();
+				Movie movie = movieDAO.getMovie(id);
+				assertEquals(id, movie.getId());
 			}
 			
 			@After

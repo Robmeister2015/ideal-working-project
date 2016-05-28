@@ -130,8 +130,9 @@ public class MovieWS {
 	 */
 
 	@DELETE
+	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public void remove(Movie movie) {
+	public void remove(Movie movie, @PathParam("id") int id) {
 		System.out.println(movie.getId());
 		movieDao.remove(movie.getId());
 	}
