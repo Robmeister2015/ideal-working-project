@@ -3,7 +3,7 @@ package com.robsmovies.RobsMovies.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
@@ -15,7 +15,6 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,16 +31,16 @@ import com.robsmovies.RobsMovies.rest.MovieWS;
 				JavaArchive archive = ShrinkWrap
 						.create(JavaArchive.class, "Test.jar")
 						.addClasses(MovieDAO.class, MovieWS.class,
-								Movie.class, UtilsDAO.class)
+								Movie.class, UtilitiesDAO.class)
 						.addAsManifestResource("META-INF/persistence.xml",
 								"persistence.xml")
 						.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-				archive.addClass(UtilsDAO.class);
 				archive.addClass(Movie.class);
-				archive.addClass(UtilsDAO.class);
-				archive.addClass(Movie.class);
+				archive.addClass(MovieDAO.class);
+				archive.addClass(UtilitiesDAO.class);
+				archive.addClass(MovieWS.class);
 				return archive;
-
+				
 			}
 			
 			List<Movie> allMovies;
@@ -56,28 +55,25 @@ import com.robsmovies.RobsMovies.rest.MovieWS;
 			private MovieDAO movieDAO;
 			
 			@EJB
-			private UtilsDAO utilsDAO;
+			private UtilitiesDAO utilsDAO;
 			 
 			@Before
-			public void setUp() throws FileNotFoundException {
-				allMovies = new ArrayList<Movie>();
-				allMovies = movieDAO.getAllMovies();
-				
+			public void setUp() throws FileNotFoundException, SQLException, ClassNotFoundException {
 				utilsDAO.deleteTable();
-				utilsDAO.setEmUp();
 			}
 			
 			@Test
-			public void testGetAllMovies() throws FileNotFoundException {
-//				utilsDAO.deleteTable();
-//				utilsDAO.resetTable();
+			public void testGetAllMovies() throws FileNotFoundException, ClassNotFoundException, SQLException {
+				utilsDAO.deleteTable();
+				utilsDAO.resetTable();
 				List<Movie> movies = movieDAO.getAllMovies();
 				assertEquals("Data fetch = data persisted", movies.size(), 3);
 			}
 			
 			@Test
-			public void testDeleteMovie(){
-				
+			public void testDeleteMovie() throws FileNotFoundException{
+				utilsDAO.deleteTable();
+				utilsDAO.resetTable();
 				List<Movie> movies = movieDAO.getAllMovies();
 				int id = movies.get(0).getId();
 				movieDAO.remove(id);
@@ -85,7 +81,7 @@ import com.robsmovies.RobsMovies.rest.MovieWS;
 			}
 			
 			@Test
-			public void testInsertMovie(){
+			public void testInsertMovie() throws FileNotFoundException, ClassNotFoundException, SQLException{
 				utilsDAO.deleteTable();
 				List<Movie> movies = movieDAO.getAllMovies();
 				assertEquals(0, movies.size());
@@ -106,18 +102,11 @@ import com.robsmovies.RobsMovies.rest.MovieWS;
 			}
 			
 			@Test
-			public void getOneMovie(){
+			public void getOneMovie() throws FileNotFoundException{
+				utilsDAO.resetTable();
 				List<Movie> movies = movieDAO.getAllMovies();
 				int id = movies.get(0).getId();
 				Movie movie = movieDAO.getMovie(id);
 				assertEquals(id, movie.getId());
 			}
-			
-			@After
-			public void tearDown() throws FileNotFoundException{	
-				utilsDAO.resetTable();
-			}
-			
-			
-			
 }

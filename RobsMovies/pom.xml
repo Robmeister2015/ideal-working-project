@@ -12,6 +12,7 @@
 	<description>A starter Java EE 6 webapp project for use on JBoss AS 7, generated from the jboss-javaee6-webapp archetype</description>
 
 	<properties>
+		<maven.test.skip>false</maven.test.skip>
 		<!-- Explicitly declaring the source encoding eliminates the following 
 			message: -->
 		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
@@ -66,6 +67,11 @@
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
 
 		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
 			as the API is included in JBoss AS 7 -->
@@ -103,10 +109,10 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-    <groupId>io.github.endreman0</groupId>
-    <artifactId>java-json</artifactId>
-    <version>0.13.0</version>
-</dependency>
+			<groupId>io.github.endreman0</groupId>
+			<artifactId>java-json</artifactId>
+			<version>0.13.0</version>
+		</dependency>
 
 		<!-- JSR-303 (Bean Validation) Implementation -->
 		<!-- Provides portable constraints such as @Email -->
@@ -151,7 +157,6 @@
 			<artifactId>arquillian-junit-container</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -169,6 +174,10 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<!-- <plugin> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
+				<version>0.7.0.201403182114</version> <executions> <execution> <goals> <goal>prepare-agent</goal> 
+				</goals> </execution> <execution> <id>report</id> <phase>prepare-package</phase> 
+				<goals> <goal>report</goal> </goals> </execution> </executions> </plugin> -->
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
@@ -260,6 +269,26 @@
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
+					<artifactId>arquillian-jacoco</artifactId>
+					<version>1.0.0.Alpha6</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jacoco</groupId>
+					<artifactId>org.jacoco.core</artifactId>
+					<version>0.6.4.201312101107</version>
+
+					<scope>test</scope>
+				</dependency>
+
+				<dependency>
+					<groupId>pl.pragmatists</groupId>
+					<artifactId>JUnitParams</artifactId>
+					<version>1.0.5</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.extension</groupId>
 					<artifactId>arquillian-warp-bom</artifactId>
 					<version>1.0.0.Alpha7</version>
 					<type>pom</type>
@@ -270,10 +299,8 @@
 					<artifactId>ibatis-common</artifactId>
 					<version>2.1.0.565</version>
 				</dependency>
-
 			</dependencies>
 		</profile>
-
 		<profile>
 			<!-- We add the JBoss repository as we need the JBoss AS connectors for 
 				Arquillian -->
@@ -294,7 +321,6 @@
 					</snapshots>
 				</repository>
 			</repositories>
-
 			<pluginRepositories>
 				<pluginRepository>
 					<id>jboss-public-repository</id>
@@ -307,7 +333,6 @@
 					</snapshots>
 				</pluginRepository>
 			</pluginRepositories>
-
 			<!-- An optional Arquillian testing profile that executes tests in a remote 
 				JBoss AS instance -->
 			<!-- Run with: mvn clean test -Parq-jbossas-remote -->
@@ -321,6 +346,5 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
 	</profiles>
 </project>
