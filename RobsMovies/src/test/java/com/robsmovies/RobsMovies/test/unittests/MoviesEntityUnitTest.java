@@ -1,4 +1,4 @@
-package com.robsmovies.RobsMovies.test;
+package com.robsmovies.RobsMovies.test.unittests;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 
@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 import com.robsmovies.RobsMovies.model.Movie;
 
 @RunWith(Arquillian.class)
-public class MoviesTest {
+public class MoviesEntityUnitTest {
 
 	@Deployment
 	public static JavaArchive createDeployment() {

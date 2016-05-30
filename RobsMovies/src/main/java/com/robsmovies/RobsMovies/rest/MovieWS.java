@@ -28,8 +28,8 @@ import com.robsmovies.RobsMovies.model.Movie;
 @LocalBean
 public class MovieWS {
 
-	private static String[] columnNames = { "title", "description", "director", "country", "yearMade", "budget",
-			"rentalPrice", "onLoan", "picture" };
+//	private static String[] columnNames = { "title", "description", "director", "country", "yearMade", "budget",
+//			"rentalPrice", "onLoan", "picture" };
 	
 //	Object[][] columnValues  = new Object[9][9];
 	HashMap<Integer, Object> valuesMap = new HashMap<Integer, Object>();
@@ -93,7 +93,7 @@ public class MovieWS {
 		movie = searchMovies(parametersDerivedFromUrl);
 		
 		if (movie.size() == 0) {
-			return Response.status(200).entity("<html>No data to return</html>").build();
+			return Response.status(404).entity("<html>No data to return</html>").build();
 		}else{
 			return Response.status(200).entity(movie).build();
 		}	
@@ -153,52 +153,34 @@ public class MovieWS {
 		List<Movie> movies = movieDao.getAllMovies();
 		List<Movie> moviesFound = new ArrayList<Movie>();
 		for(Movie m : movies){
-			if(columnsAndValues[0] != null){
-				if(!m.getTitle().equals(columnsAndValues[0].toString())){
+			
+			if(columnsAndValues[0] != null && !m.getTitle().contains(columnsAndValues[0].toString()))
 					break;
-				}
-			}
-			System.out.println("hi!");
-			if(columnsAndValues[1] != null){
-				if(!m.getDescription().equals(columnsAndValues[1].toString())){
+
+			if(columnsAndValues[1] != null && !m.getDescription().contains(columnsAndValues[1].toString()))
 					break;
-				}
-			}
-			if(columnsAndValues[2] != null){
-				if(!m.getDirector().equals(columnsAndValues[2].toString())){
+			
+			if(columnsAndValues[2] != null && !m.getDirector().contains(columnsAndValues[2].toString()))
 					break;
-				}
-		}
-			if(columnsAndValues[3] != null){
-				if(!m.getCountry().equals(columnsAndValues[3].toString())){
+
+			if(columnsAndValues[3] != null && !m.getCountry().contains(columnsAndValues[3].toString()))
 					break;
-				}
-		}
-			if(columnsAndValues[4] != null){
-				if(m.getYearMade() != Integer.parseInt(columnsAndValues[4].toString())){
+
+			if(columnsAndValues[4] != null && m.getYearMade() != Integer.parseInt(columnsAndValues[4].toString()))
 					break;
-				}
-		}
-			if(columnsAndValues[5] != null){
-				if(m.getBudget() != Double.parseDouble(columnsAndValues[5].toString())){
+
+			if(columnsAndValues[5] != null && m.getBudget() != Double.parseDouble(columnsAndValues[5].toString()))
 					break;
-				}
-		}
-			if(columnsAndValues[6] != null){
-				if(m.getRentalPrice() != Double.parseDouble(columnsAndValues[6].toString())){
+
+			if(columnsAndValues[6] != null && m.getRentalPrice() != Double.parseDouble(columnsAndValues[6].toString()))
 					break;
-				}
-		}
-			if(columnsAndValues[7] != null){
-				if(m.getOnLoan().equals(columnsAndValues[7].toString())){
+
+			if(columnsAndValues[7] != null && !m.getOnLoan().equals(columnsAndValues[7].toString()))
 					break;
-				}
-		}
-			if(columnsAndValues[8] != null){
-				if(m.getPicture().equals(columnsAndValues[8].toString())){
+
+			if(columnsAndValues[8] != null && !m.getPicture().equals(columnsAndValues[8].toString()))
 					break;
-				}
-		}
+
 			moviesFound.add(m);
 	}
 		return moviesFound;

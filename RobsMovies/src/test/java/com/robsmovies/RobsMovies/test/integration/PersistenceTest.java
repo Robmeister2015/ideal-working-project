@@ -1,4 +1,4 @@
-package com.robsmovies.RobsMovies.test;
+package com.robsmovies.RobsMovies.test.integration;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,9 +22,10 @@ import org.junit.runner.RunWith;
 import com.robsmovies.RobsMovies.data.MovieDAO;
 import com.robsmovies.RobsMovies.model.Movie;
 import com.robsmovies.RobsMovies.rest.MovieWS;
+import com.robsmovies.RobsMovies.test.utilities.UtilitiesDAO;
 
 		@RunWith(Arquillian.class)
-		public class IntegrationTest {
+		public class PersistenceTest {
 			
 			@Deployment
 			public static Archive<?> createTestArchive() {

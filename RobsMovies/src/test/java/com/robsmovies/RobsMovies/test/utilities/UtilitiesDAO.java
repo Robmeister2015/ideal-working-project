@@ -1,4 +1,4 @@
-package com.robsmovies.RobsMovies.test;
+package com.robsmovies.RobsMovies.test.utilities;
 
 import java.io.FileNotFoundException;
 import javax.ejb.LocalBean;

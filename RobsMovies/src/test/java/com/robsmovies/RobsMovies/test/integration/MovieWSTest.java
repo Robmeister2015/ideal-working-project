@@ -1,4 +1,4 @@
-package com.robsmovies.RobsMovies.test;
+package com.robsmovies.RobsMovies.test.integration;
 
 import static org.junit.Assert.*;
 
@@ -19,11 +19,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.robsmovies.RobsMovies.test.utilities.NonIntegrationUtils;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 @RunWith(JUnitParamsRunner.class)
-public class MovieWSIT extends NonIntegrationUtils{
+public class MovieWSTest extends NonIntegrationUtils{
 
 	final String GET_ALL_ENTITIES = "http://localhost:8180/RobsMovies/rest/movies";
 	final String GET_SINGLE_ENTITY = "http://localhost:8180/RobsMovies/rest/movies/1";
@@ -176,5 +178,24 @@ public class MovieWSIT extends NonIntegrationUtils{
 		json = jsonArr.getJSONObject(0);
 		assertEquals(title, json.getString("title"));
 		
+	}
+	
+	@Test
+	@Parameters(method = "noDataReturnedParams")
+	public void noDataToReturnIsReturnedWhenInformationNotFound() throws IOException{
+		
+		obj = new URL(SEARCH_PARAMETER_URL + "director=Stesdven Spielsdberg");
+		con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod(GET_REQUEST);
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+		assertEquals(404, con.getResponseCode());
+		assertEquals("<html>No data to return</html>", response.toString());
 	}
 }
