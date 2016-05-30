@@ -72,11 +72,11 @@ Object[] paramsForTesting = new Object[3];
 	public Object[] searchParametersThatReturnOneFilm(){
 		return new Object[]{
 			new Object[]{"title", "Jaws", "Jaws"},
-			new Object[]{"description", "The shark from Jaws develops a drug problem and other Hollywood stars help him to get back on his fins", "Jaws 2"},
+			new Object[]{"description", "The%20shark%20from%20Jaws%20develops%20a%20drug%20problem%20and%20other%20Hollywood%20stars%20help%20him%20to%20get%20back%20on%20his%20fins", "Jaws 2"},
 			new Object[]{"budget", "120.0", "Jaws"},
 			new Object[]{"country", "Ireland", "Jaws 3"},
 			new Object[]{"yearMade", 1978, "Jaws 3"},
-			new Object[]{"rentalPrice", 2.5, "Jaws 2"}
+			new Object[]{"rentalPrice", 2.50, "Jaws 2"}
 		};
 	}
 	
@@ -100,5 +100,28 @@ Object[] paramsForTesting = new Object[3];
 				new Object[]{1, "Jaws 2"},
 				new Object[]{2, "Jaws 3"}
 		};
+	}
+	
+	@Parameters
+	public Object[] noDataReturnedStringParams(){
+		return new Object[]{
+			new Object[]{"title", "the%20news%20on%20video"},
+			new Object[]{"description", "a%20description"},
+			new Object[]{"onLoan", "f"},
+			new Object[]{"director", "the%20wrecker"}
+		};
+	}
+	
+	@Parameters
+	public Object[] noDataReturnedDoubleParams(){
+		return new Object[]{
+			new Object[]{"budget", 180.0},
+			new Object[]{"rentalPrice", 50.0}
+		};
+	}
+	
+	@Parameters
+	public Object[] noDataReturnedIntParams(){
+		return new Object[]{"yearMade", 1875};
 	}
 }

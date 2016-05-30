@@ -25,11 +25,11 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 @RunWith(JUnitParamsRunner.class)
-public class MovieWSTest extends NonIntegrationUtils{
+public class MovieWSIT extends NonIntegrationUtils{
 
-	final String GET_ALL_ENTITIES = "http://localhost:8180/RobsMovies/rest/movies";
-	final String GET_SINGLE_ENTITY = "http://localhost:8180/RobsMovies/rest/movies/1";
-	final String SEARCH_PARAMETER_URL = "http://localhost:8180/RobsMovies/rest/movies/search?";
+	final String GET_ALL_ENTITIES = "http://localhost:8080/RobsMovies/rest/movies";
+	final String GET_SINGLE_ENTITY = "http://localhost:8080/RobsMovies/rest/movies/1";
+	final String SEARCH_PARAMETER_URL = "http://localhost:8080/RobsMovies/rest/movies/search?";
 	final String POST_ENTITY = "";
 	final String PUT_ENTITY = "";
 	
@@ -158,7 +158,8 @@ public class MovieWSTest extends NonIntegrationUtils{
 	@Parameters(method = "moreThanOneFilmReturnedFromSearch")
 	public void testGetRequestWithSingleSearchParametersForMoreThanOneFilm(int jsonId, String title) throws IOException, JSONException {
 		
-		obj = new URL(SEARCH_PARAMETER_URL + "director=Steven Spielberg");
+		String directorName = "Steven%20Spielberg";
+		obj = new URL(SEARCH_PARAMETER_URL + "director=" + directorName);
 		con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod(GET_REQUEST);
 		
@@ -175,16 +176,16 @@ public class MovieWSTest extends NonIntegrationUtils{
 		json = new JSONObject("{\"movies\":" + response.toString() + "}");
 		jsonArr = json.getJSONArray("movies");
 		
-		json = jsonArr.getJSONObject(0);
+		json = jsonArr.getJSONObject(jsonId);
 		assertEquals(title, json.getString("title"));
 		
 	}
 	
-	@Test
-	@Parameters(method = "noDataReturnedParams")
-	public void noDataToReturnIsReturnedWhenInformationNotFound() throws IOException{
+	@Test(expected=FileNotFoundException.class)
+	@Parameters(method = "noDataReturnedStringParams")
+	public void noDataToReturnIsReturnedWhenInformationNotFound(String column, String detail) throws IOException{
 		
-		obj = new URL(SEARCH_PARAMETER_URL + "director=Stesdven Spielsdberg");
+		obj = new URL(SEARCH_PARAMETER_URL + column + "=" + detail);
 		con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod(GET_REQUEST);
 		
@@ -195,7 +196,23 @@ public class MovieWSTest extends NonIntegrationUtils{
 			response.append(inputLine);
 		}
 		in.close();
-		assertEquals(404, con.getResponseCode());
-		assertEquals("<html>No data to return</html>", response.toString());
 	}
+
+
+@Test(expected=FileNotFoundException.class)
+@Parameters(method = "noDataReturnedDoubleParams")
+public void noDataToReturnIsReturnedWhenInformationNotFound(String column, Double detail) throws IOException{
+	
+	obj = new URL(SEARCH_PARAMETER_URL + column + "=" + detail);
+	con = (HttpURLConnection) obj.openConnection();
+	con.setRequestMethod(GET_REQUEST);
+	
+	BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	String inputLine;
+	StringBuffer response = new StringBuffer();
+	while ((inputLine = in.readLine()) != null) {
+		response.append(inputLine);
+	}
+	in.close();
+}
 }

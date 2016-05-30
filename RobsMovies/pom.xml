@@ -112,10 +112,15 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.github.endreman0</groupId>
-			<artifactId>java-json</artifactId>
-			<version>0.13.0</version>
-		</dependency>
+   <groupId>org.json</groupId>
+   <artifactId>json</artifactId>
+   <version>20080701</version>
+</dependency>
+<dependency>
+    <groupId>pl.pragmatists</groupId>
+    <artifactId>JUnitParams</artifactId>
+    <version>1.0.5</version>
+</dependency>
 
 		<!-- JSR-303 (Bean Validation) Implementation -->
 		<!-- Provides portable constraints such as @Email -->
@@ -148,7 +153,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 

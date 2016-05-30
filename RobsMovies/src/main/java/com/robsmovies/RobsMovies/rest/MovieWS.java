@@ -28,13 +28,13 @@ import com.robsmovies.RobsMovies.model.Movie;
 @LocalBean
 public class MovieWS {
 
-//	private static String[] columnNames = { "title", "description", "director", "country", "yearMade", "budget",
-//			"rentalPrice", "onLoan", "picture" };
+	private static String[] columnNames = { "title", "description", "director", "country", "yearMade", "budget",
+			"rentalPrice", "onLoan", "picture" };
 	
-//	Object[][] columnValues  = new Object[9][9];
+	Object[][] columnValues  = new Object[9][9];
 	HashMap<Integer, Object> valuesMap = new HashMap<Integer, Object>();
 
-//	private static Hashtable<String, Object> columnsAndValues = new Hashtable<String, Object>();
+	private static Hashtable<String, Object> columnsAndValues = new Hashtable<String, Object>();
 
 	@EJB
 	private MovieDAO movieDao;
@@ -80,24 +80,27 @@ public class MovieWS {
 
 		Object[] parametersDerivedFromUrl = { title, description, director, country, yearMade, budget, rentalPrice,
 				onLoan, picture };
-
+		
 		List<Movie> movie = new ArrayList<Movie>();
 	
 
-//		for(int i = 0; i < parametersDerivedFromUrl.length; i ++){
-//			if(parametersDerivedFromUrl[i] != null)
-//			columnsAndValues.put(columnNames[i], parametersDerivedFromUrl[i]);
-//			}
-//		movie = movieDao.getMovieBasedOnUnknownNumberOfCriteria(columnsAndValues);
-//		columnsAndValues.clear();
-		movie = searchMovies(parametersDerivedFromUrl);
-		
+		for(int i = 0; i < parametersDerivedFromUrl.length; i ++){
+			if(parametersDerivedFromUrl[i] != null)
+			columnsAndValues.put(columnNames[i], parametersDerivedFromUrl[i]);
+			}
+		movie = movieDao.getMovieBasedOnUnknownNumberOfCriteria(columnsAndValues);
+		columnsAndValues.clear();
+	
+	
 		if (movie.size() == 0) {
 			return Response.status(404).entity("<html>No data to return</html>").build();
 		}else{
+			
 			return Response.status(200).entity(movie).build();
+		}
+			
 		}	
-	}	
+	
 
 	/*
 	 * This method takes in parameters for a new movie
@@ -148,41 +151,4 @@ public class MovieWS {
 		Movie movieMatch = movieDao.getMovie(movieIdAsInt);
 		return movieMatch;
 	}
-	
-	public List<Movie> searchMovies(Object[] columnsAndValues){
-		List<Movie> movies = movieDao.getAllMovies();
-		List<Movie> moviesFound = new ArrayList<Movie>();
-		for(Movie m : movies){
-			
-			if(columnsAndValues[0] != null && !m.getTitle().contains(columnsAndValues[0].toString()))
-					break;
-
-			if(columnsAndValues[1] != null && !m.getDescription().contains(columnsAndValues[1].toString()))
-					break;
-			
-			if(columnsAndValues[2] != null && !m.getDirector().contains(columnsAndValues[2].toString()))
-					break;
-
-			if(columnsAndValues[3] != null && !m.getCountry().contains(columnsAndValues[3].toString()))
-					break;
-
-			if(columnsAndValues[4] != null && m.getYearMade() != Integer.parseInt(columnsAndValues[4].toString()))
-					break;
-
-			if(columnsAndValues[5] != null && m.getBudget() != Double.parseDouble(columnsAndValues[5].toString()))
-					break;
-
-			if(columnsAndValues[6] != null && m.getRentalPrice() != Double.parseDouble(columnsAndValues[6].toString()))
-					break;
-
-			if(columnsAndValues[7] != null && !m.getOnLoan().equals(columnsAndValues[7].toString()))
-					break;
-
-			if(columnsAndValues[8] != null && !m.getPicture().equals(columnsAndValues[8].toString()))
-					break;
-
-			moviesFound.add(m);
-	}
-		return moviesFound;
-}
 }
