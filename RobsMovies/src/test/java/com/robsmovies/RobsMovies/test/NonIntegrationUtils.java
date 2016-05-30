@@ -47,20 +47,20 @@ Object[] paramsForTesting = new Object[3];
 	}
 	public void initialiseDatabase()
 	{
-//		try
-//		{
-//			Class.forName("com.mysql.jdbc.Driver");
-//			String url="jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8121451";
-//			con = DriverManager.getConnection(url, "sql8121451", "uxAcyTD6yr");
-//			statement = con.createStatement();
-//		}
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			String url="jdbc:mysql://localhost:3307/movies";
-			con = DriverManager.getConnection(url, "root", "admin");
+			String url="jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8121451";
+			con = DriverManager.getConnection(url, "sql8121451", "uxAcyTD6yr");
 			statement = con.createStatement();
 		}
+//		try
+//		{
+//			Class.forName("com.mysql.jdbc.Driver");
+//			String url="jdbc:mysql://localhost:3307/movies";
+//			con = DriverManager.getConnection(url, "root", "admin");
+//			statement = con.createStatement();
+//		}
 		catch(Exception e)
 		{
 			System.out.println("Error: Failed to connect to database\n");
