@@ -25,7 +25,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 @RunWith(JUnitParamsRunner.class)
-public class MovieWSIT extends NonIntegrationUtils{
+public class MovieWSTest extends NonIntegrationUtils{
 
 	final String GET_ALL_ENTITIES = "http://localhost:8080/RobsMovies/rest/movies";
 	final String GET_SINGLE_ENTITY = "http://localhost:8080/RobsMovies/rest/movies/1";

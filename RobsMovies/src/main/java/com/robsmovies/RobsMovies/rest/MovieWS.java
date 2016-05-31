@@ -151,4 +151,38 @@ public class MovieWS {
 		Movie movieMatch = movieDao.getMovie(movieIdAsInt);
 		return movieMatch;
 	}
+	
+	public void searchMovie(Object[] parameters){
+		
+		List<Movie> movies = movieDao.getAllMovies();
+		
+		for(Movie m : movies){
+		if(parameters[0] != null && !m.getTitle().equals(parameters[0].toString()))
+			break;
+		
+		if(parameters[1] != null && !m.getDescription().equals(parameters[1].toString()))
+			break;
+		
+		if(parameters[2] != null && !m.getDirector().equals(parameters[2].toString()))
+			break;
+		
+		if(parameters[3] != null && !m.getCountry().equals(parameters[3].toString()))
+			break;
+		
+		if(parameters[4] != null && m.getYearMade() != Integer.parseInt(parameters[4].toString()))
+			break;
+		
+		if(parameters[5] != null && m.getBudget() != Double.parseDouble(parameters[5].toString()))
+			break;
+		
+		if(parameters[6] != null && m.getRentalPrice() != Double.parseDouble(parameters[6].toString()))
+			break;
+		
+		if(parameters[7] != null && !m.getOnLoan().equals(parameters[7].toString()))
+			break;
+		
+		if(parameters[8] != null && !m.getPicture().equals(parameters[8].toString()))
+			break;
+			}
+}
 }
