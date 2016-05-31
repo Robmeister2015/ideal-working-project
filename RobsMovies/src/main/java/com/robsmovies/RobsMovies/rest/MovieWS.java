@@ -61,9 +61,13 @@ public class MovieWS {
 	@Path("/{id}")
 	public Response findMovieById(@PathParam("id") String id) {
 		Movie movieMatch = getMovieById(id);
+		
+		if(movieMatch.getTitle() != null){
 		return Response.status(200).entity(movieMatch).build();
+	}else{
+		return Response.status(404).entity("<html><h2>No Data To Return</h2></html>").build();
 	}
-
+}
 	/*
 	 * This method takes in parameters from the URL and begins the search
 	 * process
