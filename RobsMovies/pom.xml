@@ -112,15 +112,15 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-   <groupId>org.json</groupId>
-   <artifactId>json</artifactId>
-   <version>20080701</version>
-</dependency>
-<dependency>
-    <groupId>pl.pragmatists</groupId>
-    <artifactId>JUnitParams</artifactId>
-    <version>1.0.5</version>
-</dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20080701</version>
+		</dependency>
+		<dependency>
+			<groupId>pl.pragmatists</groupId>
+			<artifactId>JUnitParams</artifactId>
+			<version>1.0.5</version>
+		</dependency>
 
 		<!-- JSR-303 (Bean Validation) Implementation -->
 		<!-- Provides portable constraints such as @Email -->
@@ -173,12 +173,12 @@
 			given to the generated war, and hence the context root) -->
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.jacoco</groupId>
+		<plugin>
+		 		<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.7.7-SNAPSHOT</version>
 			</plugin>
-			<!-- Compiler plugin enforces Java 1.6 compatibility and activates annotation 
+		<!-- Compiler plugin enforces Java 1.6 compatibility and activates annotation 
 				processors -->
 
 			<plugin>
@@ -290,17 +290,17 @@
 					<scope>test</scope>
 				</dependency>
 				<dependency>
-						<groupId>org.jboss.arquillian.extension</groupId>
-						<artifactId>arquillian-jacoco</artifactId>
-						<version>1.0.0.Alpha6</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.jacoco</groupId>
-						<artifactId>org.jacoco.core</artifactId>
-						<version>0.6.4.201312101107</version>
-						<scope>test</scope>
-					</dependency>
+					<groupId>org.jboss.arquillian.extension</groupId>
+					<artifactId>arquillian-jacoco</artifactId>
+					<version>1.0.0.Alpha6</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jacoco</groupId>
+					<artifactId>org.jacoco.core</artifactId>
+					<version>0.6.4.201312101107</version>
+					<scope>test</scope>
+				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
 					<artifactId>arquillian-warp-bom</artifactId>
@@ -381,9 +381,14 @@
 						</executions>
 					</plugin>
 					<plugin>
-						<groupId>org.jacoco</groupId>
+					<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<version>0.7.0.201403182114</version>
+						<configuration>
+							<excludes>
+								<exclude>**/*.jar</exclude>
+							</excludes>
+						</configuration>
 						<executions>
 							<execution>
 								<goals>
@@ -398,7 +403,7 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
+					</plugin> 
 				</plugins>
 			</build>
 		</profile>

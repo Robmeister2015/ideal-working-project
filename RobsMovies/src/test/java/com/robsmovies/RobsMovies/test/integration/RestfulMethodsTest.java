@@ -25,6 +25,7 @@ import com.robsmovies.RobsMovies.data.MovieDAO;
 import com.robsmovies.RobsMovies.model.Movie;
 import com.robsmovies.RobsMovies.rest.MovieWS;
 import com.robsmovies.RobsMovies.test.utilities.UtilitiesDAO;
+import com.robsmovies.RobsMovies.util.SearchMovieByParams;
 
 
 @RunWith(Arquillian.class) 
@@ -36,13 +37,14 @@ public class RestfulMethodsTest {
 		JavaArchive archive = ShrinkWrap
 				.create(JavaArchive.class, "Test.jar")
 				.addClasses(MovieDAO.class, MovieWS.class,
-						Movie.class, UtilitiesDAO.class)
+						Movie.class, UtilitiesDAO.class, SearchMovieByParams.class)
 				.addAsManifestResource("META-INF/persistence.xml",
 						"persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 		archive.addClass(Movie.class);
 		archive.addClass(MovieDAO.class);
 		archive.addClass(MovieWS.class);
+		archive.addClass(SearchMovieByParams.class);
 		return archive;
 		
 	}

@@ -16,7 +16,7 @@ public class Movie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private int identifier;
 
 	@Column(name = "title")
 	private String title;
@@ -46,18 +46,18 @@ public class Movie {
 	private String picture;
 
 	public int getId() {
-		return id;
+		return identifier;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(final int identifier) {
+		this.identifier = identifier;
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -65,7 +65,7 @@ public class Movie {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
@@ -73,7 +73,7 @@ public class Movie {
 		return director;
 	}
 
-	public void setDirector(String director) {
+	public void setDirector(final String director) {
 		this.director = director;
 	}
 
@@ -81,7 +81,7 @@ public class Movie {
 		return country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(final String country) {
 		this.country = country;
 	}
 
@@ -89,7 +89,7 @@ public class Movie {
 		return yearMade;
 	}
 
-	public void setYearMade(int yearMade) {
+	public void setYearMade(final int yearMade) {
 		this.yearMade = yearMade;
 	}
 
@@ -97,7 +97,7 @@ public class Movie {
 		return budget;
 	}
 
-	public void setBudget(double budget) {
+	public void setBudget(final double budget) {
 		this.budget = budget;
 	}
 
@@ -105,7 +105,7 @@ public class Movie {
 		return rentalPrice;
 	}
 
-	public void setRentalPrice(double rentalPrice) {
+	public void setRentalPrice(final double rentalPrice) {
 		this.rentalPrice = rentalPrice;
 	}
 
@@ -113,7 +113,7 @@ public class Movie {
 		return onLoan;
 	}
 
-	public void setOnLoan(String onLoan) {
+	public void setOnLoan(final String onLoan) {
 		this.onLoan = onLoan;
 	}
 
@@ -121,7 +121,7 @@ public class Movie {
 		return picture;
 	}
 
-	public void setPicture(String picture) {
+	public void setPicture(final String picture) {
 		this.picture = picture;
 	}
 }

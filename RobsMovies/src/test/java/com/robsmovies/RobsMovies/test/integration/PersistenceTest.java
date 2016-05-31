@@ -23,6 +23,7 @@ import com.robsmovies.RobsMovies.data.MovieDAO;
 import com.robsmovies.RobsMovies.model.Movie;
 import com.robsmovies.RobsMovies.rest.MovieWS;
 import com.robsmovies.RobsMovies.test.utilities.UtilitiesDAO;
+import com.robsmovies.RobsMovies.util.SearchMovieByParams;
 
 		@RunWith(Arquillian.class)
 		public class PersistenceTest {
@@ -32,7 +33,7 @@ import com.robsmovies.RobsMovies.test.utilities.UtilitiesDAO;
 				JavaArchive archive = ShrinkWrap
 						.create(JavaArchive.class, "Test.jar")
 						.addClasses(MovieDAO.class, MovieWS.class,
-								Movie.class, UtilitiesDAO.class)
+								Movie.class, UtilitiesDAO.class, SearchMovieByParams.class)
 						.addAsManifestResource("META-INF/persistence.xml",
 								"persistence.xml")
 						.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -40,6 +41,7 @@ import com.robsmovies.RobsMovies.test.utilities.UtilitiesDAO;
 				archive.addClass(MovieDAO.class);
 				archive.addClass(UtilitiesDAO.class);
 				archive.addClass(MovieWS.class);
+				archive.addClass(SearchMovieByParams.class);
 				return archive;
 				
 			}

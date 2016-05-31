@@ -1,8 +1,5 @@
 package com.robsmovies.RobsMovies.rest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -22,22 +19,21 @@ import javax.ws.rs.core.Response;
 
 import com.robsmovies.RobsMovies.data.MovieDAO;
 import com.robsmovies.RobsMovies.model.Movie;
+import com.robsmovies.RobsMovies.util.SearchMovieByParams;
 
 @Path("/movies")
 @Stateless
 @LocalBean
 public class MovieWS {
 
-	private static String[] columnNames = { "title", "description", "director", "country", "yearMade", "budget",
-			"rentalPrice", "onLoan", "picture" };
-	
-	Object[][] columnValues  = new Object[9][9];
-	HashMap<Integer, Object> valuesMap = new HashMap<Integer, Object>();
-
-	private static Hashtable<String, Object> columnsAndValues = new Hashtable<String, Object>();
+	Object[][] columnValues = new Object[9][9];
+	//SearchMovieByParams movieSearcher = new SearchMovieByParams();
 
 	@EJB
 	private MovieDAO movieDao;
+	
+	@EJB
+	private SearchMovieByParams movieSearcher;
 
 	/*
 	 * This method receives requests for 'all movies', when nothing is appended
@@ -48,7 +44,7 @@ public class MovieWS {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response findAll() {
 		System.out.println("Get all movies");
-		List<Movie> movie = movieDao.getAllMovies();
+		final List<Movie> movie = movieDao.getAllMovies();
 		return Response.status(200).entity(movie).build();
 	}
 
@@ -59,15 +55,16 @@ public class MovieWS {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/{id}")
-	public Response findMovieById(@PathParam("id") String id) {
-		Movie movieMatch = getMovieById(id);
-		
-		if(movieMatch.getTitle() != null){
-		return Response.status(200).entity(movieMatch).build();
-	}else{
-		return Response.status(404).entity("<html><h2>No Data To Return</h2></html>").build();
+	public Response findMovieById(@PathParam("id") final String identifier) {
+		Movie movieMatch = getMovieById(identifier);
+
+		if (movieMatch.getTitle().length() > 0) {
+			return Response.status(200).entity(movieMatch).build();
+		} else {
+			return Response.status(404).entity("<html><h2>No Data To Return</h2></html>").build();
+		}
 	}
-}
+	
 	/*
 	 * This method takes in parameters from the URL and begins the search
 	 * process
@@ -76,35 +73,26 @@ public class MovieWS {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/search")
-	public Response findMovieByParams(@QueryParam("title") String title, @QueryParam("director") String director,
-			@QueryParam("budget") Double budget, @QueryParam("rentalPrice") Double rentalPrice,
-			@QueryParam("description") String description, @QueryParam("country") String country,
-			@QueryParam("yearMade") Integer yearMade, @QueryParam("onLoan") String onLoan,
-			@QueryParam("picture") String picture) {
+	public Response findMovieByParams(@QueryParam("title") final String title,
+			@QueryParam("director") final String director, @QueryParam("budget") final Double budget,
+			@QueryParam("rentalPrice") final Double rentalPrice, @QueryParam("description") final String description,
+			@QueryParam("country") final String country, @QueryParam("yearMade") final Integer yearMade,
+			@QueryParam("onLoan") final String onLoan, @QueryParam("picture") final String picture) {
 
-		Object[] parametersDerivedFromUrl = { title, description, director, country, yearMade, budget, rentalPrice,
+		final Object[] parametersDerivedFromUrl = { title, description, director, country, yearMade, budget, rentalPrice,
 				onLoan, picture };
 		
-		List<Movie> movie = new ArrayList<Movie>();
-	
+		final List<Movie> movie = movieSearcher.searchMovie(parametersDerivedFromUrl);
 
-		for(int i = 0; i < parametersDerivedFromUrl.length; i ++){
-			if(parametersDerivedFromUrl[i] != null)
-			columnsAndValues.put(columnNames[i], parametersDerivedFromUrl[i]);
-			}
-		movie = movieDao.getMovieBasedOnUnknownNumberOfCriteria(columnsAndValues);
-		columnsAndValues.clear();
-	
-	
-		if (movie.size() == 0) {
+
+		if (movie.isEmpty()) {
 			return Response.status(404).entity("<html>No data to return</html>").build();
-		}else{
-			
+		} else {
+
 			return Response.status(200).entity(movie).build();
 		}
-			
-		}	
-	
+
+	}
 
 	/*
 	 * This method takes in parameters for a new movie
@@ -112,7 +100,7 @@ public class MovieWS {
 
 	@PUT
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response saveMovie(Movie movie) {
+	public Response saveMovie(final Movie movie) {
 		movieDao.save(movie);
 		System.out.println(movie.getPicture());
 		movieDao.savePicture(movie.getPicture(), movie.getId());
@@ -127,8 +115,8 @@ public class MovieWS {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("/{id}")
-	public Movie update(Movie movie, @PathParam("id") int id) {
-		movie.setId(id);
+	public Movie update(final Movie movie, @PathParam("id") final int identifier) {
+		movie.setId(identifier);
 		System.out.println("Updating movie: " + movie.getTitle());
 		movieDao.update(movie);
 		return movie;
@@ -141,8 +129,7 @@ public class MovieWS {
 	@DELETE
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public void remove(Movie movie, @PathParam("id") int id) {
-		System.out.println(movie.getId());
+	public void remove(final Movie movie, @PathParam("id") final int identifier) {
 		movieDao.remove(movie.getId());
 	}
 
@@ -150,43 +137,9 @@ public class MovieWS {
 	 * This method begins the find by ID process
 	 */
 
-	public Movie getMovieById(String id) {
-		int movieIdAsInt = Integer.parseInt(id);
-		Movie movieMatch = movieDao.getMovie(movieIdAsInt);
+	public Movie getMovieById(final String identifier) {
+		final int movieIdAsInt = Integer.parseInt(identifier);
+		final Movie movieMatch = movieDao.getMovie(movieIdAsInt);
 		return movieMatch;
 	}
-	
-	public void searchMovie(Object[] parameters){
-		
-		List<Movie> movies = movieDao.getAllMovies();
-		
-		for(Movie m : movies){
-		if(parameters[0] != null && !m.getTitle().equals(parameters[0].toString()))
-			break;
-		
-		if(parameters[1] != null && !m.getDescription().equals(parameters[1].toString()))
-			break;
-		
-		if(parameters[2] != null && !m.getDirector().equals(parameters[2].toString()))
-			break;
-		
-		if(parameters[3] != null && !m.getCountry().equals(parameters[3].toString()))
-			break;
-		
-		if(parameters[4] != null && m.getYearMade() != Integer.parseInt(parameters[4].toString()))
-			break;
-		
-		if(parameters[5] != null && m.getBudget() != Double.parseDouble(parameters[5].toString()))
-			break;
-		
-		if(parameters[6] != null && m.getRentalPrice() != Double.parseDouble(parameters[6].toString()))
-			break;
-		
-		if(parameters[7] != null && !m.getOnLoan().equals(parameters[7].toString()))
-			break;
-		
-		if(parameters[8] != null && !m.getPicture().equals(parameters[8].toString()))
-			break;
-			}
-}
 }
