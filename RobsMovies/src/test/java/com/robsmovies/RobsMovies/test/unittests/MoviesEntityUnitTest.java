@@ -1,31 +1,14 @@
 package com.robsmovies.RobsMovies.test.unittests;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-
 import static org.junit.Assert.*;
 
-import javax.inject.Inject;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import com.robsmovies.RobsMovies.model.Movie;
 
-@RunWith(Arquillian.class)
 public class MoviesEntityUnitTest {
 
-	@Deployment
-	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class).addClass(Movie.class).addAsManifestResource(EmptyAsset.INSTANCE,
-				"beans.xml");
-	}
-
-	@Inject
-	Movie movie;
-
+	Movie movie = new Movie();
+	
 	@Test
 	public void testGettersAndSetters() {
 		movie.setId(12);

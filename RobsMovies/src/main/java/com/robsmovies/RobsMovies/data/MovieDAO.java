@@ -1,6 +1,5 @@
 package com.robsmovies.RobsMovies.data;
 
-import java.io.File;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -57,18 +56,5 @@ public class MovieDAO {
 	public void remove(final int identifier) {
 		final Movie movie = entityManager.find(Movie.class, identifier);
 		entityManager.remove(movie);
-	}
-
-	public void savePicture(String picLocation, final int identifier) {
-		System.out.println(picLocation);
-		picLocation = picLocation.replace('\\', '/');
-		final File source = new File(picLocation);
-	//	File dest = new File("C:/Users/A00226084/" + identifier + ".jpg");
-		System.out.println("File: " + source.exists());
-//		try {
-//			FileUtils.copyFileToDirectory(source, dest);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 	}
 }

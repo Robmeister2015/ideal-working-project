@@ -84,6 +84,16 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>2.0.54-beta</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.12</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
 			<scope>test</scope>
@@ -173,12 +183,36 @@
 			given to the generated war, and hence the context root) -->
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
-		<plugin>
-		 		<groupId>org.jacoco</groupId>
+			<plugin>
+				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.7.7-SNAPSHOT</version>
 			</plugin>
-		<!-- Compiler plugin enforces Java 1.6 compatibility and activates annotation 
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.0.201403182114</version>
+				<configuration>
+					<excludes>
+						<exclude>**/*.jar</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Compiler plugin enforces Java 1.6 compatibility and activates annotation 
 				processors -->
 
 			<plugin>
@@ -189,10 +223,6 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
-				<version>0.7.0.201403182114</version> <executions> <execution> <goals> <goal>prepare-agent</goal> 
-				</goals> </execution> <execution> <id>report</id> <phase>prepare-package</phase> 
-				<goals> <goal>report</goal> </goals> </execution> </executions> </plugin> -->
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
@@ -380,30 +410,6 @@
 							</execution>
 						</executions>
 					</plugin>
-					<plugin>
-					<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.7.0.201403182114</version>
-						<configuration>
-							<excludes>
-								<exclude>**/*.jar</exclude>
-							</excludes>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>report</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>report</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin> 
 				</plugins>
 			</build>
 		</profile>
