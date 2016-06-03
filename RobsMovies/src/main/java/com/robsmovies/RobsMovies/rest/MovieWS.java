@@ -1,10 +1,15 @@
 package com.robsmovies.RobsMovies.rest;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.imageio.ImageIO;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,9 +22,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.glassfish.jersey.media.multipart.FormDataParam;
+
 import com.robsmovies.RobsMovies.data.MovieDAO;
 import com.robsmovies.RobsMovies.model.Movie;
 import com.robsmovies.RobsMovies.util.SearchMovieByParams;
+import com.sun.jersey.core.header.FormDataContentDisposition;
 
 @Path("/movies")
 @Stateless
@@ -129,6 +137,46 @@ public class MovieWS {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public void remove(Movie movie, @PathParam("id") final int identifier) {
 		movieDao.remove(identifier);
+	}
+	
+	@POST
+	@Path("/upload")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response uploadFile(
+	        @FormDataParam("file") InputStream uploadedInputStream) throws IOException {
+
+System.out.println("here");
+BufferedImage imBuff = ImageIO.read(uploadedInputStream);
+	    // Path format //10.217.14.97/Installables/uploaded/
+	 //   System.out.println("path::"+path);
+	 //   String uploadedFileLocation = path
+	     //       + fileDetail.getFileName();
+
+	    // save it
+	 //   writeToFile(uploadedInputStream, uploadedFileLocation);
+
+	 //   String output = "File uploaded to : " + uploadedFileLocation;
+
+try{
+
+    File f = new File("MyFile.jpg");
+    int r = 5;
+    int g = 25;
+    int b = 255;
+    int col = (r << 16) | (g << 8) | b;
+    for(int x = 0; x < 500; x++){
+        for(int y = 20; y < 300; y++){
+            imBuff.setRGB(x, y, col);
+        }
+    }
+    ImageIO.write(imBuff, "jpg", f);
+}
+catch(Exception e){
+    e.printStackTrace();
+}
+
+	    return Response.status(200).entity("HIHI").build();
+
 	}
 
 	/*

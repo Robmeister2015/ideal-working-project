@@ -7,7 +7,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/movies_data_functions.js"></script>
-<script src="js/image_upload.js"></script>
+<script src="js/image_uploader.js"></script>
 </head>
 
 <body>
@@ -30,7 +30,9 @@
 			disabled /> <label>Available:</label> <input id="onLoan"
 			name="onLoan" type="text" disabled />
 			<label>Image:</label>
-			<input id="image" name="image" type="file" />
+			<form id="uploadForm">
+     <input type="file" name="image" id="imageid" accept=".jpg" />
+</form>
 	</div>
 
 

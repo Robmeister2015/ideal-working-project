@@ -25,7 +25,7 @@
 		<!-- Specify the JBoss AS directory to be the JBOSS_HOME environment variable -->
 		<jboss.home>${env.JBOSS_HOME}</jboss.home>
 	</properties>
-	
+
 	<reports>
 		<reporting>
 		</reporting>
@@ -93,6 +93,11 @@
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-client</artifactId>
 			<version>1.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+			<version>2.17</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>

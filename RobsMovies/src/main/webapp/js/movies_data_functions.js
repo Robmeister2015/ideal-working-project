@@ -1,5 +1,5 @@
 // JavaScript Document
-var rootUrl = "http://localhost:8080/RobsMovies/rest/movies";
+var rootUrl = "http://localhost:8180/RobsMovies/rest/movies";
 var findAll = function() {
 	$.ajax({
 		type : 'GET',
@@ -11,6 +11,10 @@ var findAll = function() {
 
 $(document).on("click", '#newFilm', function() {
 	newFilm();
+});
+
+$(document).on("click", '#save', function() {
+	uploadImage();
 });
 
 var findById = function(id) {
@@ -86,4 +90,6 @@ $(document).ready(function() {
 	$("#image").hide();
 });
 
-var fileSelect = document.getElementById('file-select');
+var uploadImage = function(){
+	
+};
