@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import com.robsmovies.RobsMovies.model.Movie;
 import com.robsmovies.RobsMovies.rest.MovieWS;
 
-public class MovieWSMockTests {
+public class MovieWSMockTest {
 
 	MovieWS movieWs;
 	List<Movie> movies = new ArrayList<Movie>();

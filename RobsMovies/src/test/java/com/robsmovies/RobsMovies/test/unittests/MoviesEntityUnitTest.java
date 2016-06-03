@@ -26,6 +26,7 @@ public class MoviesEntityUnitTest {
 		assertEquals("Leonardo DiCaprio: A Life In Postage Stamps", movie.getTitle());
 		assertEquals("This is a description", movie.getDescription());
 		assertEquals(12.50, movie.getBudget(), 0.001);
+		assertEquals("Senor Spielbergo", movie.getDirector());
 		assertEquals(220, movie.getRentalPrice(), 0.001);
 		assertEquals(2010, movie.getYearMade());
 		assertEquals("Ireland", movie.getCountry());

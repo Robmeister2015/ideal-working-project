@@ -1,7 +1,43 @@
-<!-- Plain HTML page that kicks us into the app -->
-
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Refresh" content="0; URL=index.jsf">
+<title>Rob's Movie Emporium</title>
+<link rel="stylesheet" href="styles.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/movies_data_functions.js"></script>
+<script src="js/image_upload.js"></script>
 </head>
+
+<body>
+
+	<div><input id="search" name="search" type="text" /> 
+	<button id="search" name="search">Search</button>
+	<button id="newFilm" name="newFilm">New Film</button></div>
+	<div class="leftArea">
+		<ul id="movieList"></ul>
+	</div>
+	<div class="mainArea">
+
+		<label>Id:</label> <input id="id" name="id" type="text" disabled /> <label>Title:</label>
+		<input id="title" name="title" type="text" disabled /> <label>Director:</label>
+		<input id="director" name="director" type="text" disabled /> <label>Country:</label>
+		<input id="country" name="country" type="text" disabled /> <label>Year
+			Made:</label> <input id="yearMade" name="yearMade" type="text" disabled /> <label>Budget:</label>
+		<input id="budget" name="budget" type="text" disabled /> <label>Rental
+			Price:</label> <input id="rentalPrice" name="rentalPrice" type="text"
+			disabled /> <label>Available:</label> <input id="onLoan"
+			name="onLoan" type="text" disabled />
+			<label>Image:</label>
+			<input id="image" name="image" type="file" />
+	</div>
+
+
+	<div class=rightArea">
+		<img id="pic" height="300" /> <label>Description:</label>
+		<textarea id="description" name="description"></textarea>
+	</div>
+	<div><button id="save" name="save">Save</button></div>
+</body>
 </html>

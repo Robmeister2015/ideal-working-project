@@ -109,7 +109,8 @@ public class RestfulMethodsTest {
 		movieWS.saveMovie(movie);
 		movies = movieDAO.getAllMovies();
 		assertEquals(1, movies.size());
-		movieWS.remove(movie, 1);
+		int id = movies.get(0).getId();
+		movieWS.remove(movie, id);
 		movies = movieDAO.getAllMovies();
 		assertEquals(0, movies.size());
 	}
