@@ -50,8 +50,8 @@ Object[] paramsForTesting = new Object[3];
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			String url="jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8121451";
-			con = DriverManager.getConnection(url, "sql8121451", "uxAcyTD6yr");
+			String url="jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8121839";
+			con = DriverManager.getConnection(url, "sql8121839", "9IMFaHaQ9z");
 			statement = con.createStatement();
 		}
 //		try
