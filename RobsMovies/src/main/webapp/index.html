@@ -30,8 +30,8 @@
 			disabled /> <label>Available:</label> <input id="onLoan"
 			name="onLoan" type="text" disabled />
 			<label>Image:</label>
-			<form id="uploadForm">
-     <input type="file" name="image" id="imageid" accept=".jpg" />
+			<form id="uploadForm" encType="multipart/form-data" method="post" name="uploadForm">
+     <input type="file" name="image" id="image" accept=".jpg" />
 </form>
 	</div>
 

@@ -1,21 +1,22 @@
 var rootUrl = "http://localhost:8180/RobsMovies/rest/movies";
 
-$(document).on("click", '#save', function() {
-var formData = new FormData($('#uploadForm')[0]);
-alert(rootUrl);
-$.ajax({
-    url: rootUrl + "/upload",
-    type: "POST",
-    dataType: 'text',
-    contentType: false,
-    processData: false,
-    cache: false,
-    data: formData,
-    success: function(response) {
-        alert("success");
-    },
-    error: function() {
-        alert("unable to create the record");
-    }
-})
+$(function(){
+    $('#save').on('click', function(){ 
+       var fd = new FormData($("#uploadForm")[0]);
+    	alert('hi');
+    	alert(fd);
+        alert('here');
+        var formData = JSON.stringify(fd);
+        alert('here now here now');
+        $.ajax({
+            url: rootUrl + '/upload',  
+            type: 'POST',
+            contentType: 'application/json', 
+            data: formData,
+            dataType: 'json',
+            success:function(data){
+                alert('success');
+            },
+        });
+    });
 });
