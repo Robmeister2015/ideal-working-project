@@ -1,7 +1,7 @@
-var rootUrl = "http://localhost:8180/RobsMovies/rest/movies";
+var rootUrl = "http://localhost:8080/RobsMovies/rest/movies";
 
 $(function(){
-    $('#save').on('click', function(){ 
+    $('#destruction').on('click', function(){ 
        var fd = new FormData($("#uploadForm")[0]);
     	alert('hi');
     	alert(fd);
