@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+#headerImage {
+	width: 884px;
+	height: 221.25px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+body {
+/*	background-image: url("../images/vintage-map.jpg");
+	background-repeat: repeat-x;
+	background-size: cover; */
+}
+
+#moviesTable {
+
+}
+
+

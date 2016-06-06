@@ -1,13 +1,21 @@
 package com.robsmovies.RobsMovies.rest;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.List;
+import java.io.ByteArrayInputStream;
+import sun.misc.BASE64Decoder;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.imageio.ImageIO;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -22,8 +30,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.sonatype.plexus.components.cipher.Base64;
 
+import com.mysql.jdbc.util.Base64Decoder;
 import com.robsmovies.RobsMovies.data.MovieDAO;
 import com.robsmovies.RobsMovies.model.Movie;
 import com.robsmovies.RobsMovies.util.SearchMovieByParams;
@@ -143,15 +154,33 @@ public class MovieWS {
 	@Path("/upload")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response uploadFile(
-	        @FormDataParam("data") String input) throws IOException
+	        @FormDataParam("data") String imageInBase64) throws IOException, JSONException
 	         {
-System.out.println(input	);
-System.out.println("here");
+		System.out.println(imageInBase64);
+
+		// tokenize the data
+		String[] imageArray = imageInBase64.split(",");
+		String imageString = imageArray[1];
+
+		System.out.println(imageArray[2]);
+		// create a buffered image
+		BufferedImage image = null;
+		byte[] imageByte;
+
+		BASE64Decoder decoder = new BASE64Decoder();
+		imageByte = decoder.decodeBuffer(imageString);
+		ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+		image = ImageIO.read(bis);
+		bis.close();
+
+		// write the image to a file
+		File outputfile = new File("C:\\Users\\Robin\\Desktop\\newimage.jpg");
+		ImageIO.write(image, "png", outputfile);
 	    return Response.status(200).entity("HIHI").build();
 
 	}
 
-	/*
+	/**
 	 * This method begins the find by ID process
 	 */
 

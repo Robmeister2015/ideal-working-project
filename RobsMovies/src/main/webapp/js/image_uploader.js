@@ -1,22 +1,31 @@
-var rootUrl = "http://localhost:8080/RobsMovies/rest/movies";
-
-$(function(){
-    $('#destruction').on('click', function(){ 
-       var fd = new FormData($("#uploadForm")[0]);
-    	alert('hi');
-    	alert(fd);
-        alert('here');
-        var formData = JSON.stringify(fd);
-        alert('here now here now');
-        $.ajax({
-            url: rootUrl + '/upload',  
-            type: 'POST',
-            contentType: 'application/json', 
-            data: formData,
-            dataType: 'json',
-            success:function(data){
-                alert('success');
-            },
-        });
-    });
+$(document).on("click", '#submit', function(){    
+	uploadFile();
+	return false;
 });
+
+
+   var uploadFile = function(){ 
+	   alert('uploadFile');
+    input = document.getElementById('fileinput');
+      file = input.files[0];
+      fr = new FileReader();
+      fr.onload = receivedText;
+      fr.readAsDataURL(file);
+      receivedText();
+  };
+
+
+  function receivedText() {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8180/RobsMovies/rest/movies/upload",
+        data: fr.result + ",2",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data){alert(fr.result);},
+        failure: function(errMsg) {
+            alert(errMsg);
+        }
+  });
+  };
+    
