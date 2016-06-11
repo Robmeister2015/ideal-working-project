@@ -14,7 +14,46 @@ body {
 }
 
 #moviesTable {
+margin-left: 20%;
+margin-right: 20%;
+}
+
+@font-face {
+    font-family: 'sf_fedoraregular';
+    src: url('../fonts/sf_fedora-webfont.eot');
+    src: url('../fonts/sf_fedora-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sf_fedora-webfont.woff2') format('woff2'),
+         url('../fonts/sf_fedora-webfont.woff') format('woff'),
+         url('../fonts/sf_fedora-webfont.ttf') format('truetype'),
+         url('../fonts/sf_fedora-webfont.svg#sf_fedoraregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
 }
 
+#logo {
+  font-family: sf_fedoraregular;
+  font-size: 72pt;
+  color: #ff2d1c;
+}
 
+#logogradient .stop1 { stop-color: #ff2d1c; }
+#logogradient .stop2 { stop-color: #ff881c; }
+#logogradient .stop3 { stop-color: #f9f2e6; }
+#logogradient .stop4 { stop-color: #ffffff; }
+#svglogo             { stroke: black; font-family: sf_fedoraregular; }
+
+#headerDiv {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+#newFilmButton{
+	margin-right: 50%;
+	margin-left: 50%;
+}
+
+#tableImage {
+	width: 46px;
+	height: 68.25px;
+}

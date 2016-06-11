@@ -156,12 +156,18 @@ public class MovieWS {
 	public Response uploadFile(
 	        @FormDataParam("data") String imageInBase64) throws IOException, JSONException
 	         {
-		System.out.println(imageInBase64);
+
 
 		// tokenize the data
 		String[] imageArray = imageInBase64.split(",");
 		String imageString = imageArray[1];
-
+		String fileExtension = "";
+		if(imageArray[0].contains("jpg")){
+			fileExtension = "jpg";
+		}
+		if(imageArray[0].contains("png")){
+			fileExtension = "png";
+		}
 		System.out.println(imageArray[2]);
 		// create a buffered image
 		BufferedImage image = null;
@@ -174,7 +180,7 @@ public class MovieWS {
 		bis.close();
 
 		// write the image to a file
-		File outputfile = new File("C:\\Users\\Robin\\Desktop\\newimage.jpg");
+		File outputfile = new File("C:\\Users\\A00226084\\Desktop\\newimage." + fileExtension);
 		ImageIO.write(image, "png", outputfile);
 	    return Response.status(200).entity("HIHI").build();
 

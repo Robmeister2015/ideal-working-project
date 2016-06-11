@@ -1,4 +1,4 @@
-var mRootUrl = "http://localhost:8180/RobsMovies/rest/movies";
+var mRootUrl = "http://localhost:8080/RobsMovies/rest/movies";
 
 var convertToJSON = function() {
 	return JSON.stringify({

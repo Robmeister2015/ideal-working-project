@@ -1,15 +1,11 @@
-var mRootUrl = "http://localhost:8180/RobsMovies/rest/movies";
+var RootUrl = "http://localhost:8080/RobsMovies/rest/movies";
 var dataSet = "";
 
-var getDataSet = function(){
-	alert(dataSet + 'in getdataset');
-	return dataSet;
-};
-
 var findAll = function() {
+	alert(RootUrl);
 	$.ajax({
 		type : 'GET',
-		url : mRootUrl,
+		url : RootUrl,
 		dataType : 'json',
 		success : loadTable
 	});

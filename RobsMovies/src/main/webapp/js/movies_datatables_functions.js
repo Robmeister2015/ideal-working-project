@@ -2,13 +2,11 @@
 
 $(document).ready(function() {
 	findAll();
-	    $('[data-toggle="popover"]').popover(); 
-
 });
 
 var loadTable = function(data){
 	
-    $('#moviesTable').DataTable( {
+    var table = $('#moviesTable').DataTable( {
         data: data,
 
         columns: [
@@ -17,19 +15,20 @@ var loadTable = function(data){
 
             { data: "title" },
 
-            { data: "description" },
-
             { data: "director" },
 
             { data: "yearMade" },
-
-            { data: "budget" },
             
-            { data: "rentalPrice" },
-            
-            { data: "onLoan"}
-
+            { data: "id",
+            render: function(data, type, row) {
+                return '<img id="tableImage" src="../RobsMovies/resources/images/'+data+'.jpg" />';
+            }
+            }
         ]
 
     } );
+    
+    $('#moviesTable tbody').on('click', 'tr', function () {
+        findById(table.row(this).data().id);
+    });
 };

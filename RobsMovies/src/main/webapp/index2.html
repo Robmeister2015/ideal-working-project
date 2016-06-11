@@ -14,18 +14,60 @@
 <script src="js/image_uploader.js"></script>
 <script src="js/jquery.dataTables.js"></script>
 <script src="js/new_movie.js"></script>
+<script src="js/find_one_movie.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
 <header>
-	<img src="resources/images/indy header.png" class="img-rounded"
-		id="headerImage" />
+<div id="headerDiv">
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" id="overlay" viewBox="0 10 1100 100">
+  <defs>
+    <linearGradient id="logogradient" x1="0" y1="0" x2="1" y2="2">
+      <stop class="stop1" offset="0%"   />
+      <stop class="stop2" offset="50%"  />
+      <stop class="stop3" offset="75%"  />
+      <stop class="stop4" offset="100%" />
+    </linearGradient>
+    <path id="logopath" d="M 10 100 q 0 -10 900 80" />
+    <filter id="logofilter">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0" result="blur" />
+      <feOffset in="blur" dx="-4" dy="4" result="offsetBlur" />
+      <feMerge>
+        <feMergeNode in="offsetBlur" />
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <text id="svglogo" fill="url(#logogradient)" filter="url(#logofilter)" stroke-width="2">
+    <textPath xlink:href="#logopath">
+      <tspan font-size="100">R</tspan>
+      <tspan font-size="95" dy="-10" dx="-5">o</tspan>
+      <tspan font-size="90" dy="-8"  dx="-5">b</tspan>
+      <tspan font-size="85" dy="-6"  dx="-5">s</tspan>
+      <tspan font-size="90">M</tspan>
+      <tspan font-size="85" dy="-10" dx="-5">o</tspan>
+      <tspan font-size="80" dy="-8"  dx="-5">v</tspan>
+      <tspan font-size="75" dy="-6"  dx="-5">i</tspan>
+      <tspan font-size="70" dy="-4"  dx="-5">e</tspan>
+      <tspan font-size="80">E</tspan>
+      <tspan font-size="75" dy="-10" dx="-5">m</tspan>
+      <tspan font-size="70" dy="-8"  dx="-5">p</tspan>
+      <tspan font-size="65" dy="-6"  dx="-5">o</tspan>
+      <tspan font-size="60" dy="-4"  dx="-5">r</tspan>
+      <tspan font-size="55" dy="-8"  dx="-5">i</tspan>
+      <tspan font-size="50" dy="-6"  dx="-5">u</tspan>
+      <tspan font-size="45" dy="-4"  dx="-5">m</tspan>
+     
+    </textPath>
+  </text>
+</svg>
+</div>
 </header>
 
 <body>
 	<div class="container">
-		<h3>Tabs</h3>
+		<h3>Menu</h3>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab">Home</a></li>
 			<li><a href="#about" data-toggle="tab">About</a></li>
@@ -33,8 +75,6 @@
 			<li><a href="#covers" data-toggle="tab">Movie Cover Photos</a></li>
 		</ul>
 	</div>
-	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-		data-target="#newFilmModal">New Film</button>
 	<div id="newFilmModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
@@ -92,6 +132,68 @@
 
 		</div>
 	</div>
+	<div id="moreInfoModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">New Film</h4>
+				</div>
+				<div class="modal-body">
+					<form role="form" id="moreInfoForm" name="moreInfoForm">
+					<div class="form-group">
+							<label for="moreinfoid">Description:</label>
+							<input type="text" class="form-control"
+								id="moreinfoid"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="moreinfotitle">Title:</label> <input type="text"
+								class="form-control" id="moreinfotitle" name="title">
+						</div>
+						<div class="form-group">
+							<label for="moreinfodescription">Description:</label>
+							<textarea rows="4" cols="50" class="form-control"
+								id="moreinfodescription"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="moreinfodirector">Director:</label> <input type="text"
+								class="form-control" id="moreinfodirector">
+						</div>
+						<div class="form-group">
+							<label for="moreinfocountry">Country:</label> <input type="text"
+								class="form-control" id="moreinfocountry">
+						</div>
+						<div class="form-group">
+							<label for="moreinfoyearMade">Year Made:</label> <input type="text"
+								class="form-control" id="moreinfoyearMade">
+						</div>
+						<div class="form-group">
+							<label for="moreinfobudget">Budget:</label> <input type="text"
+								class="form-control" id="moreinfobudget">
+						</div>
+						<div class="form-group">
+							<label for="moreinforentalPrice">Rental Price:</label> <input type="text"
+								class="form-control" id="moreinforentalPrice">
+						</div>
+						<div class="form-group">
+							<label for="moreinfoonLoan">On Loan?:</label> <input type="text"
+								class="form-control" id="moreinfoonLoan">
+						</div>
+						<div class="form-group">
+						<input type="file" class="form-control" id="moreinfofileinput"/>
+						</div>
+						<button type="submit" id="submit" name="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 	<div class="tab-content">
 		<div id="home" class="tab-pane fade in active">
 			<table class="table table-striped table-hover table-condensed"
@@ -100,12 +202,9 @@
 					<tr>
 						<th align="left">ID No.</th>
 						<th align="left" class="col-sm-2">Title</th>
-						<th align="left" class="col-sm-4">Description</th>
 						<th align="left">Director</th>
 						<th align="left">Year Made</th>
-						<th align="left">Budget</th>
-						<th align="left">Rental Price</th>
-						<th align="left">On Loan?</th>
+						<th align="left">Picture</th>
 					</tr>
 				</thead>
 			</table>
@@ -115,5 +214,7 @@
 			<p align="center">Test</p>
 		</div>
 	</div>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+		data-target="#newFilmModal" id="newFilmButton">New Film</button>
 </body>
 </html>
