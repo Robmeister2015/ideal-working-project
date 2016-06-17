@@ -9,6 +9,15 @@ var loadTable = function(data){
     var table = $('#moviesTable').DataTable( {
         data: data,
 
+        dom:' <"search"f><"top"l>rt<"bottom"ip><"clear">',
+        
+        "columnDefs": [
+                       { "width": "5%", "targets": 0 },
+                       { "width": "5%", "targets": 1 },
+                       { "width": "5%", "targets": 2 },
+                       { "width": "5%", "targets": 3 },
+                       { "width": "5%", "targets": 4 },
+                     ],
         columns: [
 
             { data: "id" },

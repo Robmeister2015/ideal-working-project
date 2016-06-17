@@ -7,16 +7,21 @@
 	margin-right: 10%;
 }
 
+/*
 body {
-/*	background-image: url("../images/vintage-map.jpg");
+	background-image: url("../images/vintage-map.jpg");
 	background-repeat: repeat-x;
-	background-size: cover; */
-}
+	background-size: cover;
+
+} */
 
 #moviesTable {
-margin-left: 20%;
-margin-right: 20%;
+margin-left: 10%;
+width: 80% !Important;
+float: left;
 }
+
+
 
 @font-face {
     font-family: 'sf_fedoraregular';
@@ -46,14 +51,66 @@ margin-right: 20%;
 #headerDiv {
 	margin-left: 20%;
 	margin-right: 20%;
+	 border: 1px solid orange;
+	 border-radius: 25px;
+	 background-color: blue;
+	 opacity: 0.5;
 }
 
 #newFilmButton{
-	margin-right: 50%;
-	margin-left: 50%;
+	margin-right: 2%;
+	margin-left: 10%;
 }
 
 #tableImage {
 	width: 46px;
 	height: 68.25px;
+}
+
+#headerimage {
+	margin-left: 20%;
+}
+
+.search {
+	margin-left: 10%;
+	margin-right: 20%;
+}
+
+.dataTables_length{
+margin-left: 10%; 
+}
+
+#leftMenuDiv{
+	float: left;
+	position:absolute;
+	margin-top: 20%;
+}
+
+.container {
+	float: left;
+	}
+	
+#moviesTable_paginate {
+	margin-left: 10%;
+}
+
+#moviesTable_info {
+	margin-left: 10%;
+}
+
+#internalCoversDiv {
+	float: left;
+}
+
+#carouselDiv {
+margin-left: 10%;
+width: 80% !Important;
+float: left;
+}
+
+.imagesize {
+	margin-left: 50%;
+	margin-right: 50%;
+	height: 200px;
+	width: 200px;
 }
