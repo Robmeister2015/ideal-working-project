@@ -57,8 +57,8 @@ Object[] paramsForTesting = new Object[3];
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			String url="jdbc:mysql://localhost:3307/movies";
-			con = DriverManager.getConnection(url, "root", "admin");
+			String url="jdbc:mysql://groupproject.cdauegtl908j.eu-west-1.rds.amazonaws.com:3306/movies";
+			con = DriverManager.getConnection(url, "grouproject", "grouproject2016");
 			statement = con.createStatement();
 		}
 		catch(Exception e)
@@ -83,7 +83,8 @@ Object[] paramsForTesting = new Object[3];
 	public void insertData() throws FileNotFoundException, SQLException{
 		initialiseDatabase();
 		
-			File sqlFile = new File("E:\\MSc Applied Software Engineering\\Web Technologies\\Project\\SQL Table.sql");
+			File sqlFile = new File("C:\\Users\\Robin\\Desktop\\SQL Table.sql");
+	//		File sqlFile = new File("E:\\MSc Applied Software Engineering\\Web Technologies\\Project\\SQL Table.sql");
 			Scanner sqlScanner = new Scanner(sqlFile).useDelimiter(";");
 			while(sqlScanner.hasNext()){
 				statement.execute(sqlScanner.next());

@@ -20,7 +20,7 @@ var loadImages = function(data){
 }
 
 
-var RootUrl = "http://localhost:8080/RobsMovies/rest/movies";
+var RootUrl = "http://localhost:8180/RobsMovies/rest/movies";
 var dataSet = "";
 
 var findAllImages = function() {

@@ -2,7 +2,7 @@ var findById = function(id) {
 	$('#moreInfoModal').modal('show');
 	$.ajax({
 		type : 'GET',
-		url : mRootUrl + "/" + id,
+		url : evenRootierUrl + "/" + id,
 		dataType : "json",
 		success : loadMoreInfo
 	});
@@ -18,5 +18,5 @@ var loadMoreInfo = function(data){
 	$('#moreinfobudget').val(data.budget).prop('disabled', false);
 	$('#moreinforentalPrice').val(data.rentalPrice).prop('disabled', false);
 	$('#moreinfoonLoan').val(data.onLoan).prop('disabled', false);
-	// $('#pics').attr('src', 'pics/' + movie.picture).prop('disabled', true);
+	$('#moreInfoImage').attr('src', '../RobsMovies/resources/images/' + data.picture).prop('disabled', true);
 }

@@ -17,6 +17,7 @@ var loadTable = function(data){
                        { "width": "5%", "targets": 2 },
                        { "width": "5%", "targets": 3 },
                        { "width": "5%", "targets": 4 },
+                       { "width": "5%", "targets": 5 },
                      ],
         columns: [
 
@@ -32,12 +33,16 @@ var loadTable = function(data){
             render: function(data, type, row) {
                 return '<img id="tableImage" src="../RobsMovies/resources/images/'+data+'.jpg" />';
             }
-            }
+            },
+            { data: "id",
+            render: function(data){
+            	return '<a id="'+data+'" class="moreInfoClicks" href="#"> More Information</a>';
+            }}
         ]
 
     } );
     
-    $('#moviesTable tbody').on('click', 'tr', function () {
-        findById(table.row(this).data().id);
+    $('a.moreInfoClicks').click(function () {
+        findById(this.id);
     });
 };
