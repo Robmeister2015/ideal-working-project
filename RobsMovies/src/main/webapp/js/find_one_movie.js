@@ -9,14 +9,14 @@ var findById = function(id) {
 };
 
 var loadMoreInfo = function(data){
-	$('#moreinfoid').val(data.id).prop('disabled', true);
-	$('#moreinfotitle').val(data.title).prop('disabled', false);
-	$('#moreinfodescription').val(data.description).prop('disabled', false);
-	$('#moreinfodirector').val(data.director).prop('disabled', false); 
-	$('#moreinfocountry').val(data.country).prop('disabled', false);
-	$('#moreinfoyearMade').val(data.yearMade).prop('disabled', false);
-	$('#moreinfobudget').val(data.budget).prop('disabled', false);
-	$('#moreinforentalPrice').val(data.rentalPrice).prop('disabled', false);
-	$('#moreinfoonLoan').val(data.onLoan).prop('disabled', false);
-	$('#moreInfoImage').attr('src', '../RobsMovies/resources/images/' + data.picture).prop('disabled', true);
+	$('#moreinfoid').text(data.id);
+	$('#moreinfotitle').text(data.title);
+	$('#moreinfodescription').text(data.description);
+	$('#moreinfodirector').text(data.director); 
+	$('#moreinfocountry').text(data.country);
+	$('#moreinfoyearMade').text(data.yearMade);
+	$('#moreinfobudget').text(data.budget);
+	$('#moreinforentalPrice').text(data.rentalPrice);
+	$('#moreinfoonLoan').text(data.onLoan);
+	$('#moreInfoImage').attr('src', '../RobsMovies/resources/images/' + data.picture);
 }
