@@ -6,10 +6,69 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/customStyleSheet.css" />
+<script type="text/template" id="movie_details">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title">Update Movie</h4>
+</div>
+<div class="modal-body">
+<div id="moreInfoForm">
+<div id="image-in-all-the-people">
+<img id="moreInfoImage" class="imageSizeMoreInfo img-rounded" src="resources/images/<%= picture%>"></img>
+</div>
+<div><label for="moreinfoid">ID:</label><p id="moreinfoid"><%= id%></p></div>
+<label for="moreinfotitle">Title:</label>
+<input type="text" class="form-control" placeholder="<%= title%>" id="moreinfotitle"></input>
+<label for="moreinfodescription">Description:</label>
+<textarea rows="4" cols="50" class="form-control" placeholder="<%= description%>" id="moreinfodescription"></textarea>
+<label for="moreinfodirector">Director:</label><input type="text" placeholder="<%= director%>" class="form-control" id="moreinfodirector"></input>						
+<label for="moreinfocountry">Country:</label> <input type="text" class="form-control" placeholder="<%= country%>" id="moreinfocountry"></input>
+<label for="moreinfoyearMade">Year Made:</label> <input type="text" class="form-control" placeholder="<%= yearMade%>" id="moreinfoyearMade"></input>
+<label for="moreinfobudget">Budget:</label> <input type="text" class="form-control" placeholder="<%= budget%>" id="moreinfobudget"></input>
+<label for="moreinforentalPrice">Rental Price:</label> <input type="text" class="form-control" placeholder="<%= rentalPrice%>" id="moreinforentalPrice"></input>
+<label for="moreinfoonLoan">On Loan?:</label> <input type=text" class="form-control" placeholder="<%= onLoan%>" id="moreinfoonLoan"></input>
+<label for="fileinput">Image Upload</label><div class="form-group"><input type="file" class="form-control" id="fileinput" /></div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" id="finalUpdateButton">Update</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</script>
+<script type="text/template" id="movie_details_returned">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title">More Info</h4>
+</div>
+<div class="modal-body">
+<div id="moreInfoForm">
+<div id="image-in-all-the-people">
+<img id="moreInfoImage" class="imageSizeMoreInfo img-rounded" src="#"></img>
+</div>
+<div><label for="moreinfoid">ID:</label><p id="moreinfoid"></p></div>
+<div><label for="moreinfotitle">Title:</label> <p id="moreinfotitle"></p></div>
+<label for="moreinfodescription">Description:</label>
+<p id="moreinfodescription"></p>
+<label for="moreinfodirector">Director:</label> <p id="moreinfodirector"></p>
+<label for="moreinfocountry">Country:</label> <p id="moreinfocountry"></p>
+<label for="moreinfoyearMade">Year Made:</label> <p id="moreinfoyearMade"></p>
+<label for="moreinfobudget">Budget:</label> <p id="moreinfobudget"></p>
+<label for="moreinforentalPrice">Rental Price:</label> <p id="moreinforentalPrice"></p>
+<label for="moreinfoonLoan">On Loan?:</label> <p id="moreinfoonLoan"></p>					
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" id="deleteFilm" data-dismiss="modal">Delete Movie</button>
+<button type="button" class="btn btn-default" id="updateButton">Update Movie</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	 <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    
 <script src="js/find_all.js"></script>
 <script src="js/movies_datatables_functions.js"></script>
 <script src="js/image_uploader.js"></script>
@@ -18,6 +77,10 @@
 <script src="js/find_one_movie.js"></script>
 <script src="js/carousel_js.js"></script>
 <script src="js/change_form.js"></script>
+<script src="js/movie_view.js"></script>
+<script src="js/update_movie.js"></script>
+
+
 
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -254,7 +317,7 @@
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
-			<div class="modal-content">
+			<div id="modalContent" class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">More Info</h4>

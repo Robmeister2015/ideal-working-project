@@ -180,7 +180,7 @@ public class MovieWS {
 		bis.close();
 
 		// write the image to a file
-		File outputfile = new File("C:/Users/A00226084/Documents/Software/jboss/standalone/deployments/RobsMovies.war/resources/images/" + imageArray[2] + fileExtension);
+		File outputfile = new File("C:/Users/Robin/Downloads/jboss-as-7.1.1.Final/standalone/deployments/RobsMovies.war/resources/images/" + imageArray[2] + fileExtension);
 		ImageIO.write(image, "png", outputfile);
 	    return Response.status(200).entity("HIHI").build();
 

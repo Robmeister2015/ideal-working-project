@@ -1,0 +1,75 @@
+<html>
+
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    <script src="js/movie_model.js"></script>
+    <script src="js/main_movie_view.js"></script>
+    <script src="js/detailsView.js"></script>
+    <script src="js/movie_view.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/template" id="movie_list">
+<li><a href="#" id=<%=id%>><%=name%></a></li>
+	
+</script>
+<script type="text/template" id="movie-details">
+<button id="btnAdd">New Wine</button>
+<div class="form-left-col">
+
+<label>Id:</label>
+<input id="movieId" name="id" type="text" value="<%= id %> "disabled />
+
+<label>Title:</label>
+<input type="text" id="title" name="title" value="<%= title %>" required/>
+
+<label>Description:</label>
+<input type="text" id="description" name="description" value="<%= description %>"/>
+
+<label>Director:</label>
+<input type="text" id="director" name="director" value="<%= director %>"/>
+
+<label>Country:</label>
+<input type="text" id="country" name="country" value="<%= country %>"/>
+
+<label>Year Made:</label>
+<input type="text" id="yearMade" name="yearMade"  value="<%= yearMade %>"/>
+
+<label>Budget:</label>
+<input type="text" id="budget" name="budget"  value="<%= budget %>"/>
+
+<label>Rental Price:</label>
+<input type="text" id="rentalPrice" name="rentalPrice"  value="<%= rentalPrice %>"/>
+
+<label>On Loan:</label>
+<input type="text" id="onLoan" name="onLoan"  value="<%= onLoan %>"/>
+
+<label>Picture:</label>
+<input type="text" id="picture" name="picture"  value="<%= picture %>"/>
+<br>
+<button id="btnSave">Save</button>
+<button id="btnDelete">Delete</button>
+</div>
+
+<div id="rightArea">
+<img height="300" src="resources/images/<%= picture %>"/>
+<label>Notes:</label>
+<textarea id="description" name="description"><%= description %></textarea>
+</div>
+
+</script>
+    <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
+  </head>
+ <body>
+<h1>Welcome to the Wine List Application</h1>
+<div class="leftArea">
+<ul id="movieList"></ul>
+</div>
+<form id="wineForm">
+<div id="mainArea">
+</div>
+</form>
+
+</body>
+
+</html>
