@@ -27,9 +27,9 @@ import junitparams.Parameters;
 @RunWith(JUnitParamsRunner.class)
 public class MovieWSTest extends NonIntegrationUtils{
 
-	final String GET_ALL_ENTITIES = "http://localhost:8180/RobsMovies/rest/movies";
-	final String GET_SINGLE_ENTITY = "http://localhost:8180/RobsMovies/rest/movies/1";
-	final String SEARCH_PARAMETER_URL = "http://localhost:8180/RobsMovies/rest/movies/search?";
+	final String GET_ALL_ENTITIES = "http://localhost:8080/RobsMovies/rest/movies";
+	final String GET_SINGLE_ENTITY = "http://localhost:8080/RobsMovies/rest/movies/1";
+	final String SEARCH_PARAMETER_URL = "http://localhost:8080/RobsMovies/rest/movies/search?";
 	final String POST_ENTITY = "";
 	final String PUT_ENTITY = "";
 	
@@ -82,6 +82,8 @@ public class MovieWSTest extends NonIntegrationUtils{
 		assertEquals(title, json.getString("title"));
 		System.out.println(title + " " + json.getString("title"));
 		assertEquals(description, json.getString("description"));
+		System.out.println("Description: " + description);
+		System.out.println("DB Desc: " + json.getString("description"));
 		assertEquals(budget, json.getDouble("budget"), 0.001);
 		assertEquals(onLoan, json.getString("onLoan"));
 		assertEquals(director, json.getString("director"));

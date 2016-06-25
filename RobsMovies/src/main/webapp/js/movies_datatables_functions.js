@@ -1,4 +1,4 @@
-
+var table;
 
 $(document).ready(function() {
 	findAll();
@@ -6,8 +6,16 @@ $(document).ready(function() {
 
 var loadTable = function(data){
 	
-    var table = $('#moviesTable').DataTable( {
+    table = $('#moviesTable').DataTable( {
+    	
+    
         data: data,
+        
+        "fnDrawCallback": function() {
+        	 $('button.moreInfoClicks').click(function () {
+        	        findById(this.id);
+        	    });
+		    },
 
         dom:' <"search"f><"top"l>rt<"bottom"ip><"clear">',
         
@@ -29,20 +37,20 @@ var loadTable = function(data){
 
             { data: "yearMade" },
             
-            { data: "id",
+            { data: "picture",
             render: function(data, type, row) {
-                return '<img id="tableImage" src="../RobsMovies/resources/images/'+data+'.jpg" />';
+                return '<img id="tableImage" src="../RobsMovies/resources/images/'+data+'" />';
             }
             },
             { data: "id",
             render: function(data){
-            	return '<a id="'+data+'" class="moreInfoClicks" href="#"> More Information</a>';
+            	return '<button type="button" id="'+data+'" class="btn btn-primary btn-sm moreInfoClicks">More Information</button>';
             }}
         ]
 
     } );
-    
-    $('a.moreInfoClicks').click(function () {
+    $('button.moreInfoClicks').click(function () {
         findById(this.id);
     });
 };
+

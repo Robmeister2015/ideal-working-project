@@ -27,6 +27,19 @@ body {
 	margin-top: -6%;
 }
 
+#footerimage {
+	float: left;
+	height: 200px;
+	width: 150px;
+}
+
+#footerimage2 {
+	float: right;
+	height: 200px;
+	width: 150px;
+}
+
+
 #moviesTable {
 	margin-left: 10%;
 	width: 80% !Important;
@@ -35,12 +48,16 @@ body {
 
 #moviesTable th {
 	font-family: sf_fedoraregular;
-	font-size: 10pt;
+	-webkit-text-stroke-width: 0.1px;
+   -webkit-text-stroke-color: black;
+	font-size: 15pt;
 	color: #ff2d1c;
 	}
 	
 	#moviesTable td {
-	font-family: Indira_K;
+	font-family: webcomic;
+	-webkit-text-stroke-width: 0.5px;
+   -webkit-text-stroke-color: red;
 	font-size: 12pt;
 	}
 
@@ -60,6 +77,11 @@ body {
 @font-face {
 	font-family: 'About You';
 	src: url('../fonts/About You.ttf');
+}
+
+@font-face {
+	font-family: 'webcomic';
+	src: url('../fonts/WEBLBB.TTF');
 }
 
 @font-face {
@@ -110,6 +132,7 @@ body {
 #tableImage {
 	width: 46px;
 	height: 68.25px;
+	box-shadow: 10px 10px 5px #888888;
 }
 
 #headerimage {
@@ -122,7 +145,7 @@ body {
 	background-color: #ffffff;
 	border: 1px solid black;
 /*	opacity: 0.6; */
-	filter: alpha(opacity = 60);
+	filter: alpha(opacity = 90);
 }
 
 .dataTables_length {
@@ -130,7 +153,7 @@ body {
 	width: 80%;
 	background-color: #ffffff;
 	border: 1px solid black;
-/*	opacity: 0.6; */
+	opacity: 0.9;
 	filter: alpha(opacity = 60);
 }
 
@@ -141,7 +164,7 @@ body {
 }
 
 .container {
-	float: left;
+	margin-right: 17%;
 }
 
 #moviesTable_paginate {
@@ -159,7 +182,7 @@ body {
 	background-color: #ffffff;
 	border: 1px solid black;
 /*	opacity: 0.6; */
-	filter: alpha(opacity = 60);
+	filter: alpha(opacity = 90);
 }
 
 #internalCoversDiv {
@@ -168,17 +191,26 @@ body {
 
 #carouselDiv {
 	margin-left: 10%;
-	padding-bottom: 50%;
+	height: 50%;
 	width: 80% !Important;
 	float: left;
 }
 
 .imagesize {
 	margin-left: 50%;
-	margin-right: 50%;
+	margin-right: 40%;
 	height: 200px;
-	width: 200px;
+	width: 180px;
 }
+
+.imageSizeMoreInfo {
+	float: right;
+	height: 200px;
+	width: 180px;
+	margin-left: 10%;
+	box-shadow: 10px 10px 5px #888888;
+}
+
 
 #homeInfo {
 	margin: 10%;
@@ -188,7 +220,7 @@ body {
 #tableDiv {
 	background-color: #b3ccff;
 	border: 1px solid black;
-	opacity: 0.8;
+	opacity: 0.9;
 	filter: alpha(opacity = 60);
 }
 
@@ -196,7 +228,7 @@ body {
 	margin-left: 10%;
 	background-color: #b3ccff;
 	border: 1px solid black;
-	opacity: 0.8;
+	opacity: 0.9;
 	filter: alpha(opacity = 60);
 }
 
@@ -210,10 +242,10 @@ body {
 }
 
 footer {
+	position: absolute;
+	width: 50%;
 	margin-top: 2%;
-	margin-left: 10%;
-	display: block;
-	position: relative;
+	margin-left: 25%;
 	border: 1px solid orange;
 	border-radius: 25px;
 	background: rgba(128, 255, 128, 0.1);
@@ -257,7 +289,8 @@ footer p {
 }
 
 #homeInfo p {
-	font-family: About You;
+	font-family: webcomic;
+	-webkit-text-stroke: 1px #cccc00;
 	color: black;
 	font-size: 17px;
 }
@@ -270,13 +303,27 @@ footer p {
 }
 
 #moreInfoForm p {
-	font-family: About You;
+	font-family: webcomic;
+	-webkit-text-stroke-width: 0.5px;
+   -webkit-text-stroke-color: red;
 	color: black;
-	font-size: 20px;
+	font-size: 10px;
 }
 
-#moreInfoImage {
-	margin-left: 80%;
+h4 {
+	font-family: sf_fedoraregular;
+	color: red;
+	font-size: 25px;
+	-webkit-text-stroke: 1px black;
+}
+
+#moreinfotitle {
+	width: 50%;
+}
+
+#footerTable {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* table#moviesTable tr.even td {

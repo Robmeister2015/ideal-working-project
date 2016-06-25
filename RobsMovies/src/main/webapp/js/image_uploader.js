@@ -1,4 +1,4 @@
-$(document).on("click", '#submit', function(){    
+$(document).on("click", '#saveFilm', function(){    
 	uploadFile();
 	return false;
 });
@@ -9,17 +9,17 @@ $(document).on("click", '#submit', function(){
     input = document.getElementById('fileinput');
       file = input.files[0];
       fr = new FileReader();
-      fr.onload = receivedText;
       fr.readAsDataURL(file);
-      receivedText();
+      fr.onload = receivedText;
   };
 
 
   function receivedText() {
+	  var root = "http://localhost:8080/RobsMovies/rest/movies/upload";
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/RobsMovies/rest/movies/upload",
-        data: fr.result + ",2",
+        url: root,
+        data: fr.result + "," + $('input[type=file]').val().replace(/C:\\fakepath\\/i, ''),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){alert(fr.result);},

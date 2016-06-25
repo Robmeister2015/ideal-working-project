@@ -9,7 +9,7 @@ var loadImages = function(data){
 	html += "<div class='item active'>"
 	      +"<img class='imagesize' src='../RobsMovies/resources/images/1.jpg' alt='1'>"
 	    +  "</div>";
-		$.each(data, function(i, e) {
+		$.each(data, function(i, e) {	
 			html += "<div class='item'>"
 		      +"<img class='imagesize' src='../RobsMovies/resources/images/"+e.picture +"' alt="+i+">"
 		    +  "</div>";
@@ -20,13 +20,14 @@ var loadImages = function(data){
 }
 
 
-var RootUrl = "http://localhost:8180/RobsMovies/rest/movies";
+var RootUrl = "http://localhost:8080/RobsMovies/rest/movies";
+var theRootierAlternative = "http://localhost:8080/RobsMovies/rest/movies";
 var dataSet = "";
 
 var findAllImages = function() {
 	$.ajax({
 		type : 'GET',
-		url : RootUrl,
+		url : theRootierAlternative,
 		dataType : 'json',
 		success : loadImages
 	});

@@ -1,11 +1,12 @@
 var findById = function(id) {
-	$('#moreInfoModal').modal('show');
+	
 	$.ajax({
 		type : 'GET',
 		url : evenRootierUrl + "/" + id,
 		dataType : "json",
 		success : loadMoreInfo
 	});
+	$('#moreInfoModal').modal('show');
 };
 
 var loadMoreInfo = function(data){

@@ -118,10 +118,14 @@ public class MovieWS {
 	 */
 
 	@PUT
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response saveMovie(final Movie movie) {
-		movieDao.save(movie);
-		return Response.status(201).entity(movie).build();
+	@Path("/{id}")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Movie update(final Movie movie, @PathParam("id") final int identifier) {
+		movie.setId(identifier);
+		System.out.println("Updating movie: " + movie.getTitle());
+		movieDao.update(movie);
+		return movie;
 	}
 
 	/*
@@ -129,14 +133,10 @@ public class MovieWS {
 	 */
 
 	@POST
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Path("/{id}")
-	public Movie update(final Movie movie, @PathParam("id") final int identifier) {
-		movie.setId(identifier);
-		System.out.println("Updating movie: " + movie.getTitle());
-		movieDao.update(movie);
-		return movie;
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response saveMovie(final Movie movie) {
+		movieDao.save(movie);
+		return Response.status(201).entity(movie).build();
 	}
 
 	/*
@@ -180,7 +180,7 @@ public class MovieWS {
 		bis.close();
 
 		// write the image to a file
-		File outputfile = new File("C:\\Users\\A00226084\\Desktop\\newimage." + fileExtension);
+		File outputfile = new File("C:/Users/A00226084/Documents/Software/jboss/standalone/deployments/RobsMovies.war/resources/images/" + imageArray[2] + fileExtension);
 		ImageIO.write(image, "png", outputfile);
 	    return Response.status(200).entity("HIHI").build();
 
