@@ -16,18 +16,18 @@
 <div id="image-in-all-the-people">
 <img id="moreInfoImage" class="imageSizeMoreInfo img-rounded" src="resources/images/<%= picture%>"></img>
 </div>
-<div><label for="moreinfoid">ID:</label><p id="moreinfoid"><%= id%></p></div>
+<div><label for="moreinfoid">ID:</label><p id="moreinfoidsave"><%= id%></p></div>
 <label for="moreinfotitle">Title:</label>
-<input type="text" class="form-control" placeholder="<%= title%>" id="moreinfotitle"></input>
+<input type="text" class="form-control" value="<%= title%>" id="moreinfotitlesave"></input>
 <label for="moreinfodescription">Description:</label>
-<textarea rows="4" cols="50" class="form-control" placeholder="<%= description%>" id="moreinfodescription"></textarea>
-<label for="moreinfodirector">Director:</label><input type="text" placeholder="<%= director%>" class="form-control" id="moreinfodirector"></input>						
-<label for="moreinfocountry">Country:</label> <input type="text" class="form-control" placeholder="<%= country%>" id="moreinfocountry"></input>
-<label for="moreinfoyearMade">Year Made:</label> <input type="text" class="form-control" placeholder="<%= yearMade%>" id="moreinfoyearMade"></input>
-<label for="moreinfobudget">Budget:</label> <input type="text" class="form-control" placeholder="<%= budget%>" id="moreinfobudget"></input>
-<label for="moreinforentalPrice">Rental Price:</label> <input type="text" class="form-control" placeholder="<%= rentalPrice%>" id="moreinforentalPrice"></input>
-<label for="moreinfoonLoan">On Loan?:</label> <input type=text" class="form-control" placeholder="<%= onLoan%>" id="moreinfoonLoan"></input>
-<label for="fileinput">Image Upload</label><div class="form-group"><input type="file" class="form-control" id="fileinput" /></div>
+<textarea rows="4" cols="50" class="form-control" placeholder="" id="moreinfodescriptionsave"><%= description%></textarea>
+<label for="moreinfodirector">Director:</label><input type="text" value="<%= director%>" class="form-control" id="moreinfodirectorsave"></input>						
+<label for="moreinfocountry">Country:</label> <input type="text" class="form-control" value="<%= country%>" id="moreinfocountrysave"></input>
+<label for="moreinfoyearMade">Year Made:</label> <input type="text" class="form-control" value="<%= yearMade%>" id="moreinfoyearMadesave"></input>
+<label for="moreinfobudget">Budget:</label> <input type="text" class="form-control" value="<%= budget%>" id="moreinfobudgetsave"></input>
+<label for="moreinforentalPrice">Rental Price:</label> <input type="text" class="form-control" value="<%= rentalPrice%>" id="moreinforentalPricesave"></input>
+<label for="moreinfoonLoan">On Loan?:</label> <input type=text" class="form-control" value="<%= onLoan%>" id="moreinfoonLoansave"></input>
+<label for="fileinput">Image Upload</label><div class="form-group"><input type="file" class="form-control" id="fileinputsave" /></div>
 </div>
 </div>
 <div class="modal-footer">
@@ -76,7 +76,6 @@
 <script src="js/new_movie.js"></script>
 <script src="js/find_one_movie.js"></script>
 <script src="js/carousel_js.js"></script>
-<script src="js/change_form.js"></script>
 <script src="js/movie_view.js"></script>
 <script src="js/update_movie.js"></script>
 
@@ -148,7 +147,7 @@
 			<li id="productsTab"><a href="#products" data-toggle="tab" id="productsLink">Products</a></li>
 			<li id="carouselTab"><a href="#covers" data-toggle="tab" id="coversTab">Movie
 					Cover Photos</a></li>
-					<li id="filmNewTab"><a href="#covers" data-toggle="tab" id="newFilmTab">Add A Film</a></li>
+					<li id="filmNewTab"><a data-target="#newFilmModal" data-toggle="modal" id="newFilmTab">Add A Film</a></li>
 					
 		</ul>
 		<div class="tab-content">

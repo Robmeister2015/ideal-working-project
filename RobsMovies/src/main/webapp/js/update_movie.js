@@ -1,21 +1,32 @@
+var picSave = '';
 
+$(document).ready(function(){
+	var movie2 = new Movie();
+})
 
 var updateMovie = function(){
-	alert("hihi");
-	var movie = new Movie({id:$('#moreinfoid').text()});
-	movie.fetch({
-		success:function(movie){
+	movie2 = new Movie({id:$('#moreinfoid').text()});
+	var movie = new Movie();
+	if($('#fileinputsave').val().replace(/C:\\fakepath\\/i, '') == ""){
+		picSave = picture;
+		alert('upload box: ' + $('#fileinputsave').val().replace(/C:\\fakepath\\/i, ''));
+	}else{
+		uploadFile2();
+		picSave = $('#fileinputsave').val().replace(/C:\\fakepath\\/i, '');
+	}
 			movie.save({
-				id:$('#moreinfoid').text(),
-				title:$('#moreinfotitle').text(),
-				description:$('#moreinfodescription').text(),
-				director:$('#moreinfodirector').text(),
-				country:$('#moreinfocountry').text(),
-				yearMade:$('#moreinfoyearMade').text(),
-				budget:$('#moreinfpbudget').text(),
-				rentalPrice:$('#moreinforentalPrice').text(),
-				onLoan:$('#moreinfoonLoan').text()
+					id:$('#moreinfoidsave').text(),
+				title:$('#moreinfotitlesave').val(),
+				description:$('#moreinfodescriptionsave').val(),
+				director:$('#moreinfodirectorsave').val(),
+				country:$('#moreinfocountrysave').val(),
+				yearMade:$('#moreinfoyearMadesave').val(),
+				budget:$('#moreinfpbudgetsave').val(),
+				rentalPrice:$('#moreinforentalPricesave').val(),
+				onLoan:$('#moreinfoonLoansave').val(),
+				picture:picSave
 			})
-		}
-	})
+			movie.save();
+			table.destroy();
+			findAll();
 }

@@ -160,6 +160,10 @@ public class MovieWS {
 
 		// tokenize the data
 		String[] imageArray = imageInBase64.split(",");
+		System.out.println(imageArray.length);
+		System.out.println("1" + imageArray[0]);
+		System.out.println("2" + imageArray[1]);
+		System.out.println("3" + imageArray[2]);
 		String imageString = imageArray[1];
 		String fileExtension = "";
 		if(imageArray[0].contains("jpg")){

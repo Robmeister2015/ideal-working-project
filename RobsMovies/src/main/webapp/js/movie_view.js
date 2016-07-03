@@ -1,10 +1,11 @@
 var viewRootUrl = "http://localhost:8080/RobsMovies/rest/movies";
-
+var picture = "";
 $(document).ready(function(){
 $('#updateButton').on('click', function(){
 	var movie = new Movie({id:$('#moreinfoid').text()});
 	movie.fetch({
 		success:function(){
+			picture = movie.get('picture');
 				renderIt(movie);	
 	}
 });
@@ -15,10 +16,29 @@ urlRoot:viewRootUrl
 })
 
 MovieView = Backbone.View.extend({
+	 defaults: {
+		    "picture": picture
+		  },
+		  
 	events: {
 		"click #finalUpdateButton":function(){
+			alert("picsy: " + picture);
 			updateMovie();
-			renderItBack();
+		//	renderItBack();
+		},
+		
+		"click #updateButton":function(){
+			var movie = new Movie({id:$('#moreinfoid').text()});
+			movie.fetch({
+				success:function(){
+						renderIt(movie);	
+			}
+		});
+		},
+		
+		"click #deleteFilm":function(){
+			alert('deleting...');
+			deleteFilm();
 		}
 	},
 	render:function(){
