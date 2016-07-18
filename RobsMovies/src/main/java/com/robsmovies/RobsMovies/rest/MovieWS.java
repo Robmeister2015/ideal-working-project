@@ -1,24 +1,11 @@
 package com.robsmovies.RobsMovies.rest;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.List;
-import java.io.ByteArrayInputStream;
-import sun.misc.BASE64Decoder;
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.imageio.ImageIO;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -29,16 +16,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.glassfish.jersey.media.multipart.FormDataParam;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.sonatype.plexus.components.cipher.Base64;
-
-import com.mysql.jdbc.util.Base64Decoder;
 import com.robsmovies.RobsMovies.data.MovieDAO;
 import com.robsmovies.RobsMovies.model.Movie;
 import com.robsmovies.RobsMovies.util.SearchMovieByParams;
-import com.sun.jersey.core.header.FormDataContentDisposition;
 
 @Path("/movies")
 @Stateless
@@ -150,45 +130,39 @@ public class MovieWS {
 		movieDao.remove(identifier);
 	}
 	
-	@POST
-	@Path("/upload")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response uploadFile(
-	        @FormDataParam("data") String imageInBase64) throws IOException, JSONException
-	         {
-
-
-		// tokenize the data
-		String[] imageArray = imageInBase64.split(",");
-		System.out.println(imageArray.length);
-		System.out.println("1" + imageArray[0]);
-		System.out.println("2" + imageArray[1]);
-		System.out.println("3" + imageArray[2]);
-		String imageString = imageArray[1];
-		String fileExtension = "";
-		if(imageArray[0].contains("jpg")){
-			fileExtension = "jpg";
-		}
-		if(imageArray[0].contains("png")){
-			fileExtension = "png";
-		}
-		System.out.println(imageArray[2]);
-		// create a buffered image
-		BufferedImage image = null;
-		byte[] imageByte;
-
-		BASE64Decoder decoder = new BASE64Decoder();
-		imageByte = decoder.decodeBuffer(imageString);
-		ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
-		image = ImageIO.read(bis);
-		bis.close();
-
-		// write the image to a file
-		File outputfile = new File("C:/Users/Robin/Downloads/jboss-as-7.1.1.Final/standalone/deployments/RobsMovies.war/resources/images/" + imageArray[2] + fileExtension);
-		ImageIO.write(image, "png", outputfile);
-	    return Response.status(200).entity("HIHI").build();
-
-	}
+//	@POST
+//	@Path("/upload")
+//	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//	public Response uploadFile(
+//	        @FormDataParam("data") String imageInBase64) throws IOException, JSONException
+//	         {
+//
+//		String[] imageArray = imageInBase64.split(",");
+//		System.out.println(imageArray.length);
+//		String imageString = imageArray[1];
+//		String fileExtension = "";
+//		if(imageArray[0].contains("jpg")){
+//			fileExtension = "jpg";
+//		}
+//		if(imageArray[0].contains("png")){
+//			fileExtension = "png";
+//		}
+//		System.out.println(imageArray[2]);
+//		BufferedImage image = null;
+//		byte[] imageByte;
+//
+//		BASE64Decoder decoder = new BASE64Decoder();
+//		imageByte = decoder.decodeBuffer(imageString);
+//		ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+//		image = ImageIO.read(bis);
+//		bis.close();
+//
+//		// write the image to a file
+//		File outputfile = new File("C:/Users/A00226084/Documents/Software/jboss/standalone/deployments/RobsMovies.war/resources/images/" + imageArray[2] + fileExtension);
+//		ImageIO.write(image, "png", outputfile);
+//	    return Response.status(200).entity("HIHI").build();
+//
+//	}
 
 	/**
 	 * This method begins the find by ID process

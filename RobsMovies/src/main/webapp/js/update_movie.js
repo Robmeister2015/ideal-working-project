@@ -9,13 +9,12 @@ var updateMovie = function(){
 	var movie = new Movie();
 	if($('#fileinputsave').val().replace(/C:\\fakepath\\/i, '') == ""){
 		picSave = picture;
-		alert('upload box: ' + $('#fileinputsave').val().replace(/C:\\fakepath\\/i, ''));
 	}else{
 		uploadFile2();
 		picSave = $('#fileinputsave').val().replace(/C:\\fakepath\\/i, '');
 	}
 			movie.save({
-					id:$('#moreinfoidsave').text(),
+				id:$('#moreinfoidsave').text(),
 				title:$('#moreinfotitlesave').val(),
 				description:$('#moreinfodescriptionsave').val(),
 				director:$('#moreinfodirectorsave').val(),
@@ -27,6 +26,11 @@ var updateMovie = function(){
 				picture:picSave
 			})
 			movie.save();
-			table.destroy();
-			findAll();
+			
+			 setTimeout(function(){
+				 table.destroy();
+				 findAll();
+			    }, 5000);
+			 
+				
 }

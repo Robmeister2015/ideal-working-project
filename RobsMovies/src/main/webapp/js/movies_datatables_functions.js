@@ -5,10 +5,9 @@ $(document).ready(function() {
 });
 
 var loadTable = function(data){
-	
-    table = $('#moviesTable').DataTable( {
-    	
-    
+
+    table = $('#moviesTable').DataTable( {	
+    		
         data: data,
         
         "fnDrawCallback": function() {
@@ -44,13 +43,17 @@ var loadTable = function(data){
             },
             { data: "id",
             render: function(data){
-            	return '<button type="button" id="'+data+'" class="btn btn-primary btn-sm moreInfoClicks">More Information</button>';
+            
+            	return '<button type="button" id="'+data+'" class="btn btn-primary btn-sm moreInfoClicks">More Information     <span class="glyphicons glyphicon glyphicon glyphicon-eye-open"></span></button>';
             }}
         ]
 
     } );
+    
+    
     $('button.moreInfoClicks').click(function () {
         findById(this.id);
     });
+     
 };
 

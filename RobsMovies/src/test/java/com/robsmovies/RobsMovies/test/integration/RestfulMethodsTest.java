@@ -86,12 +86,13 @@ public class RestfulMethodsTest {
 		movie2.setOnLoan("n");
 		movie2.setBudget(1202);
 		movie2.setYearMade(1901);
-		movie2.setRentalPrice(122);
+		movie2.setRentalPrice(11);
 		movie2.setPicture("test string2");
 	}
 	
 	@Test
 	public void AsaveMovieTest() {
+		utilsDAO.deleteTable();
 		List<Movie> movies = movieDAO.getAllMovies();
 		assertEquals(0, movies.size());
 		movieWS.saveMovie(movie);
@@ -141,7 +142,7 @@ public class RestfulMethodsTest {
 		assertEquals("A Test Director2", m.getDirector());
 		assertEquals("A Test Country2", m.getCountry());
 		assertEquals(1202, m.getBudget(), 0.001);
-		assertEquals(122, m.getRentalPrice(), 0.001);
+		assertEquals(11, m.getRentalPrice(), 0.001);
 		assertEquals(1901, m.getYearMade());
 		assertEquals("n", m.getOnLoan());
 		assertEquals("test string2", m.getPicture());

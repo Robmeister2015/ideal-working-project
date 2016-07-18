@@ -73,13 +73,13 @@ public class SeleniumTest {
 		WebElement modalClick;
 		List<WebElement> childs = modalButton.findElements(By.xpath(".//*"));
 		for(WebElement e : childs){
-			System.out.println(childs.size());
-			if(e.getAttribute("id").equals("1")){
+			if(e.getAttribute("id").equals("16")){
 				modalClick = e;
 				modalClick.click();
 			}
 		}
 			driver.switchTo().activeElement();
+			Thread.sleep(3000);
 			WebElement title = driver.findElement(By.id("moreinfotitle"));
 			assertTrue(title.isDisplayed());
 
@@ -98,18 +98,18 @@ public class SeleniumTest {
 		WebElement modalClick;
 		List<WebElement> childs = modalButton.findElements(By.xpath(".//*"));
 		for(WebElement e : childs){
-			System.out.println(childs.size());
-			if(e.getAttribute("id").equals("1")){
+			if(e.getAttribute("id").equals("16")){
 				modalClick = e;
 				modalClick.click();
 			}
 		}
 			driver.switchTo().activeElement();
+			Thread.sleep(3000);
 			WebElement title = driver.findElement(By.id("moreinfotitle"));
 			assertTrue(title.isDisplayed());
 
 			String s = driver.findElement(By.id("moreinfotitle")).getText();
-			assertEquals("Jaws", s);
+			assertEquals("TestMovie2", s);
 	}
 	
 	@After

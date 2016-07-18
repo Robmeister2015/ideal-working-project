@@ -1,7 +1,9 @@
 var viewRootUrl = "http://localhost:8080/RobsMovies/rest/movies";
 var picture = "";
+var movieId = "";
 $(document).ready(function(){
 $('#updateButton').on('click', function(){
+	movieId = $('#moreinfoid').text();
 	var movie = new Movie({id:$('#moreinfoid').text()});
 	movie.fetch({
 		success:function(){
@@ -22,9 +24,15 @@ MovieView = Backbone.View.extend({
 		  
 	events: {
 		"click #finalUpdateButton":function(){
-			alert("picsy: " + picture);
 			updateMovie();
-		//	renderItBack();
+			var movie = new Movie({id:movieId})
+			movie.fetch({
+				success:function(){
+					 setTimeout(function(){
+						 renderItBack(movie);
+					    }, 5000);
+				}
+			});
 		},
 		
 		"click #updateButton":function(){
@@ -37,7 +45,6 @@ MovieView = Backbone.View.extend({
 		},
 		
 		"click #deleteFilm":function(){
-			alert('deleting...');
 			deleteFilm();
 		}
 	},
@@ -47,7 +54,7 @@ MovieView = Backbone.View.extend({
 		return this;
 	},
 	render2:function(){
-		var template = _.template($('#movie_details_returned').html(), {});
+		var template = _.template($('#movie_details_returned').html(), this.model.toJSON());
 		$(this.el).html(template);
 		return this;
 	}
@@ -58,7 +65,7 @@ var renderIt = function(movie){
 	$('#modalContent').html(movieView.render().el);
 }
 
-var renderItBack = function(){
-	var movieView2 = new MovieView();
+var renderItBack = function(movie){
+	var movieView2 = new MovieView({model:movie});
 	$('#modalContent').html(movieView2.render2().el);
 }

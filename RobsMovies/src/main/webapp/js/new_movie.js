@@ -35,8 +35,10 @@ var saveFilm = function(){
 	var movie = new Movie();
 	movie.save(movieDetails, {
 		success: function(movie){
-			table.destroy();
-			findAll();
+			 setTimeout(function(){
+				 table.destroy();
+				 findAll();
+			    }, 5000);
 		}
 	});
 };

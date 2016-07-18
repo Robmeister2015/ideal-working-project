@@ -43,18 +43,18 @@
 <div class="modal-body">
 <div id="moreInfoForm">
 <div id="image-in-all-the-people">
-<img id="moreInfoImage" class="imageSizeMoreInfo img-rounded" src="#"></img>
+<img id="moreInfoImage" class="imageSizeMoreInfo img-rounded" src="../RobsMovies/resources/images/<%= picture%>"></img>
 </div>
-<div><label for="moreinfoid">ID:</label><p id="moreinfoid"></p></div>
-<div><label for="moreinfotitle">Title:</label> <p id="moreinfotitle"></p></div>
+<div><label for="moreinfoid">ID:</label><p id="moreinfoid"><%= id%></p></div>
+<div><label for="moreinfotitle">Title:</label> <p id="moreinfotitle"><%= title%></p></div>
 <label for="moreinfodescription">Description:</label>
-<p id="moreinfodescription"></p>
-<label for="moreinfodirector">Director:</label> <p id="moreinfodirector"></p>
-<label for="moreinfocountry">Country:</label> <p id="moreinfocountry"></p>
-<label for="moreinfoyearMade">Year Made:</label> <p id="moreinfoyearMade"></p>
-<label for="moreinfobudget">Budget:</label> <p id="moreinfobudget"></p>
-<label for="moreinforentalPrice">Rental Price:</label> <p id="moreinforentalPrice"></p>
-<label for="moreinfoonLoan">On Loan?:</label> <p id="moreinfoonLoan"></p>					
+<p id="moreinfodescription"><%= description%></p>
+<label for="moreinfodirector">Director:</label> <p id="moreinfodirector"><%= director%></p>
+<label for="moreinfocountry">Country:</label> <p id="moreinfocountry"><%= country%></p>
+<label for="moreinfoyearMade">Year Made:</label> <p id="moreinfoyearMade"><%= yearMade%></p>
+<label for="moreinfobudget">Budget:</label> <p id="moreinfobudget"><%= budget%></p>
+<label for="moreinforentalPrice">Rental Price:</label> <p id="moreinforentalPrice"><%= rentalPrice%></p>
+<label for="moreinfoonLoan">On Loan?:</label> <p id="moreinfoonLoan"><%= onLoan%></p>					
 </div>
 </div>
 <div class="modal-footer">
@@ -141,21 +141,18 @@
 
 <body>
 	<div class="container">
-		<h3>What's on the menu?</h3>
+	<span class="glyphicons glyphicon glyphicon-facetime-video"></span><h3>What's on the menu?</h3><span class="glyphicons glyphicon glyphicon-facetime-video"></span>
 		<ul id="nav-ul" class="nav nav-tabs">
-			<li class="active" id="homeTab"><a href="#home" data-toggle="tab">Home</a></li>
-			<li id="productsTab"><a href="#products" data-toggle="tab" id="productsLink">Products</a></li>
+			<li id="homeTab"><a href="#home" data-toggle="tab">Home</a></li>
+			<li class="active" id="productsTab"><a href="#products" data-toggle="tab" id="productsLink">Products</a></li>
 			<li id="carouselTab"><a href="#covers" data-toggle="tab" id="coversTab">Movie
 					Cover Photos</a></li>
 					<li id="filmNewTab"><a data-target="#newFilmModal" data-toggle="modal" id="newFilmTab">Add A Film</a></li>
 					
 		</ul>
 		<div class="tab-content">
-			<div id="products" class="tab-pane fade in">
+			<div id="products" class="tab-pane fade in active">
 				<div id="leftMenuDiv">
-					<button type="button" class="btn btn-info btn-lg"
-						data-toggle="modal" data-target="#newFilmModal" id="newFilmButton">New
-						Film</button>
 				</div>
 				<div id="tableDiv">
 					<table class="table table-striped table-hover table-condensed"
@@ -163,7 +160,7 @@
 						<thead>
 							<tr>
 								<th align="left">ID No.</th>
-								<th align="left" class="col-sm-2">Title</th>
+								<th align="left" class="col-sm-2"><span class="glyphicons glyphicon glyphicon-facetime-video"></span>Title</th>
 								<th align="left">Director</th>
 								<th align="left">Year Made</th>
 								<th align="left">Picture</th>
@@ -173,12 +170,12 @@
 					</table>
 				</div>
 			</div>
-			<div id="home" class="tab-pane fade in active">
+			<div id="home" class="tab-pane fade in">
 				<div id="homeInfo">
 					<h2>About The Store</h2>
 					<img id="aboutPageImage" class="img-rounded"
 						src="../RobsMovies/resources/images/th.jpg"></img>
-					<p>Hi, and welcome to our movie website. Please notice the rounded corners on the image to the left. We arfe very proud of those.
+					<p><span class="glyphicons glyphicon glyphicon-facetime-video"></span>Hi, and welcome to our movie website. Please notice the rounded corners on the image to the left. We arfe very proud of those.
 					Very proud indeed. Please feel free to navigate through the website and let us know what you think. Currently, the only 
 					functionality available to you is seeing a full list of films and clicking them for more information. Please do this.</p>
 

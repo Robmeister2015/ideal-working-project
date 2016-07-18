@@ -84,7 +84,7 @@ Object[] paramsForTesting = new Object[3];
 		initialiseDatabase();
 		
 	//		File sqlFile = new File("C:\\Users\\Robin\\Desktop\\SQL Table.sql");
-			File sqlFile = new File("F:\\MSc Applied Software Engineering\\Web Technologies\\Project\\SQL Table.sql");
+			File sqlFile = new File("C:\\Users\\A00226084\\Desktop\\SQL Table.sql");
 			Scanner sqlScanner = new Scanner(sqlFile).useDelimiter(";");
 			while(sqlScanner.hasNext()){
 				statement.execute(sqlScanner.next());

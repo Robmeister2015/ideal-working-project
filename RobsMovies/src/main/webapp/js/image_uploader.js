@@ -1,3 +1,5 @@
+var counter = 0;
+
 $(document).on("click", '#saveFilm', function(){    
 	uploadFile();
 	return false;
@@ -5,7 +7,7 @@ $(document).on("click", '#saveFilm', function(){
 
 
    var uploadFile = function(){ 
-	   alert('uploadFile');
+	   alert("here");
     input = document.getElementById('fileinput');
       file = input.files[0];
       fr = new FileReader();
@@ -22,16 +24,13 @@ $(document).on("click", '#saveFilm', function(){
         data: fr.result + "," + $('input[type=file]').val().replace(/C:\\fakepath\\/i, ''),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function(data){alert(fr.result);},
-        failure: function(errMsg) {
-            alert(errMsg);
-        }
+        success: console.log("image uploaded"),
+        error: console.log("error")
   });
   };
     
   
   var uploadFile2 = function(){ 
-	   alert('uploadFile');
    input = document.getElementById('fileinputsave');
      file = input.files[0];
      fr = new FileReader();
@@ -48,9 +47,9 @@ $(document).on("click", '#saveFilm', function(){
        data: fr.result + "," + $('#fileinputsave').val().replace(/C:\\fakepath\\/i, ''),
        contentType: "application/json; charset=utf-8",
        dataType: "json",
-       success: function(data){alert(fr.result);},
-       failure: function(errMsg) {
-           alert(errMsg);
-       }
+       success:  console.log("success"),
+       error: console.log("error")
  });
  }
+ 
+ 

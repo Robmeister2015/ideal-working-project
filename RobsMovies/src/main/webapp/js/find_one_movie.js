@@ -1,12 +1,14 @@
-var findById = function(id) {
-	
-	$.ajax({
-		type : 'GET',
-		url : evenRootierUrl + "/" + id,
-		dataType : "json",
-		success : loadMoreInfo
+var findById = function(movieId) {
+	window.Movie = Backbone.Model.extend({
+		urlRoot:evenRootierUrl
 	});
-	$('#moreInfoModal').modal('show');
+
+	var movie = new Movie({id:movieId});
+	movie.fetch({
+		success: function(movie){
+			loadMoreInfo(movie.toJSON());
+		}
+	})
 };
 
 var loadMoreInfo = function(data){
@@ -20,4 +22,6 @@ var loadMoreInfo = function(data){
 	$('#moreinforentalPrice').text(data.rentalPrice);
 	$('#moreinfoonLoan').text(data.onLoan);
 	$('#moreInfoImage').attr('src', '../RobsMovies/resources/images/' + data.picture);
+	$('#moreInfoModal').modal('show');
 }
+
